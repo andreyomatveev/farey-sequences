@@ -3,7 +3,7 @@ A Haskell module FareySequencesModule.hs exporting a dozen of functions coded af
 in Farey Sequences: Dulaity and Maps Between Subsequences, by A.O. Matveev, De Gruyter, 2017. 
 
 # Our Dramatis Personae 
-  (see Table 1.1 of the monograph):
+  (See Table 1.1 of the monograph):
 - (Standard) Farey Sequence Fm ( in LaTeX: $\mathcal{F}_m$ ), where $m > 0$;
 - Farey Subsequence Fml ( in LaTeX: $\mathcal{F}{}_m^l$ ), where $m > 1$, and $0 < l < m$;
 - Farey Subsequence Gml ( in LaTeX: $\mathcal{G}{}_m^l$ ), where $m > 1$, and $0 < l < m$;
