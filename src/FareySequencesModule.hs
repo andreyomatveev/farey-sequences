@@ -1,6 +1,6 @@
 -- Andrey O. Matveev
--- After several selected formulas from the monograph A.O. Matveev, Farey Sequences: Duality and Maps Between Subseqeucnes.
--- Berlin: De Gruyter, 2017
+-- After several selected formulas from the monograph A.O. Matveev, Farey Sequences: Duality and Maps Between Subsequences, 
+-- Berlin: De Gruyter, 2017, https://doi.org/10.1515/9783110547665 .
 --
 -- Our Dramatis Personae (see Table 1.1 of the monograph):
 --
