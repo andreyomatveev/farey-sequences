@@ -15,7 +15,7 @@ In healthy situations, all of the exported functions return NONNEGATIVE reduced 
 If you get a NEGATIVE fraction, it means that something went wrong, and the denominator of the resulting negative fraction has 
 no computational meaning, since it just reports a reason of the problem---see the source code of the function you have used.
 
-# In the beginning
+# In the Beginning
 If you would like to build up a certain subsequence of neighboring (one after another) fractions in one of the above Personae, 
 then first you should realize what you hold in your hands in the beginning.
 
