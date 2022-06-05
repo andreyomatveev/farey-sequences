@@ -1,6 +1,6 @@
 # FareySequencesModule.hs
 A Haskell module FareySequencesModule.hs exporting a dozen of functions coded after several selected formulas presented 
-in Farey Sequences: Duality and Maps Between Subsequences, by A.O. Matveev, De Gruyter, 2017. 
+in Farey Sequences: Duality and Maps Between Subsequences, by A.O. Matveev, De Gruyter, 2017, https://doi.org/10.1515/9783110547665. 
 
 # Our Dramatis Personae 
   (See Table 1.1 of the monograph):
