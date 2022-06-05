@@ -2,12 +2,13 @@
 A Haskell module FareySequencesModule.hs exporting a dozen of functions coded after a dozen of selected formulas presented 
 in Farey Sequences: Dulaity and Maps Between Subsequences, by A.O. Matveev, De Gruyter, 2017. 
 
-# Our Dramatis Personae (see Table 1.1 of the monograph):
-- (Standard) Farey Sequence Fm ( in LaTeX: $\mathcal{F}_m$ ), where m > 0;
-- Farey Subsequence Fml ( in LaTeX: $\mathcal{F}{}_m^l$ ), where m > 1, and 0 < l < m;
-- Farey Subsequence Gml ( in LaTeX: $\mathcal{G}{}_m^l$ ), where m > 1, and 0 < l < m;
-- Farey Subsequence FB2mm ( in LaTeX: $\mathcal{F}(\mathbb{B}(2m),m)$ ), where m > 0;
-- Farey Subsequence FBnm ( in LaTeX: $\mathcal{F}(\mathbb{B}(n),m)$ ), where n > 1, and 0 < m < n.
+# Our Dramatis Personae 
+  (see Table 1.1 of the monograph):
+- (Standard) Farey Sequence Fm ( in LaTeX: $\mathcal{F}_m$ ), where $m > 0$;
+- Farey Subsequence Fml ( in LaTeX: $\mathcal{F}{}_m^l$ ), where $m > 1$, and $0 < l < m$;
+- Farey Subsequence Gml ( in LaTeX: $\mathcal{G}{}_m^l$ ), where $m > 1$, and $0 < l < m$;
+- Farey Subsequence FB2mm ( in LaTeX: $\mathcal{F}(\mathbb{B}(2m),m)$ ), where $m > 0$;
+- Farey Subsequence FBnm ( in LaTeX: $\mathcal{F}(\mathbb{B}(n),m)$ ), where $n > 1$, and $0 < m < n$.
 
 # Fractions
 In healthy situations, all of the exported functions return NONNEGATIVE reduced fractions (h % k) such that (0 % 1) <= (h % k) <= (1 % 1).
