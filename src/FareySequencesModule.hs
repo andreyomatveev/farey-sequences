@@ -302,7 +302,7 @@ successorInFBnm n m predecessor
   | n == 2 * m = successorInFB2mm m predecessor
   | n < 2 = -1 % 1 -- "N/A: Parameter n of the sequence should be > 1"
   | m < 1 || m >= n = -1 % 2 -- "N/A: Parameter m of the sequence should be between 0 (excluded) and n (excluded)"
-  | predecessor < 0 % 1 || predecessor >= 1 % 1 = -1 % 3 --"N/A: Prdecessor should be between (0 % 1) (excluded) and (1 % 1) (included)"
+  | predecessor < 0 % 1 || predecessor >= 1 % 1 = -1 % 3 --"N/A: Predecessor should be between (0 % 1) (excluded) and (1 % 1) (included)"
   | denominator predecessor > n = -1 % 4 --"N/A: Denominator of the predecessor should not exceed `n' "
   | m + denominator predecessor - n > numerator predecessor || numerator predecessor > m = -1 % 5 --"N/A: Numerator of the predecessor should be between (m + denominator - n) (included) and m (included)"
   | otherwise =
