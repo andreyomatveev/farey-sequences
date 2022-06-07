@@ -1,5 +1,5 @@
 -- Andrey O. Matveev
--- After several selected formulas from the monograph A.O. Matveev, Farey Sequences: Duality and Maps Between Subsequences, 
+-- After several selected formulas from the monograph A.O. Matveev, Farey Sequences: Duality and Maps Between Subsequences,
 -- Berlin: De Gruyter, 2017, https://doi.org/10.1515/9783110547665 .
 --
 -- Our Dramatis Personae (see Table 1.1 of the monograph):
@@ -176,9 +176,9 @@ successorInGml :: Integer -> Integer -> Rational -> Rational
 successorInGml m l predecessor
   | m < 2 = -1 % 1 -- "N/A: Parameter m of the sequence should be > 1"
   | l <= 0 || l >= m = -1 % 2 --"N/A: Parameter l should be between 0 (excluded) and m (excluded)"
-  | predecessor < 0 % 1 || predecessor >= 1 % 1 = -1 % 3 --"N/A: Prdecessor should be between (0 % 1) (included) and (1 % 1) (excluded)"
-  | denominator predecessor > m = -1 % 4 --"N/A: Denominator of the prdecessor should not exceed the parameter m of the sequence"
-  | l + denominator predecessor - m > numerator predecessor = -1 % 5 --"N/A: Denominator of the prdecessor minus its numerator should not exceed (m - l)"
+  | predecessor < 0 % 1 || predecessor >= 1 % 1 = -1 % 3 --"N/A: Predecessor should be between (0 % 1) (included) and (1 % 1) (excluded)"
+  | denominator predecessor > m = -1 % 4 --"N/A: Denominator of the predecessor should not exceed the parameter m of the sequence"
+  | l + denominator predecessor - m > numerator predecessor = -1 % 5 --"N/A: Denominator of the predecessor minus its numerator should not exceed (m - l)"
   | otherwise =
     if predecessor == 0 % 1
       then successorOfZeroFirstInGml m l
@@ -342,8 +342,8 @@ findNumeratorOfPredecessor searchInterval successor =
   fromMaybe 0 (find (\x -> (denominator successor * x + 1) `mod` numerator successor == 0) [fst searchInterval .. snd searchInterval])
 
 findNumeratorOfSuccessor :: (Integer, Integer) -> Rational -> Integer
-findNumeratorOfSuccessor searchInterval prdecessor =
-  fromMaybe 0 (find (\x -> (denominator prdecessor * x - 1) `mod` numerator prdecessor == 0) [fst searchInterval .. snd searchInterval])
+findNumeratorOfSuccessor searchInterval predecessor =
+  fromMaybe 0 (find (\x -> (denominator predecessor * x - 1) `mod` numerator predecessor == 0) [fst searchInterval .. snd searchInterval])
 
 predecessorOfOneFirstInFm :: Integer -> Rational
 -- See Remark 1.6 and Table 1.5  of the monograph
