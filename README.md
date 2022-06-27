@@ -20,9 +20,9 @@ If you would like to build up a certain subsequence of neighboring (one after an
 then first you should realize what you hold in your hands in the beginning.
 
 If you have two neighboring fractions, then you proceed in the recurrent manner by means of a relatively fast function 
-of the form predecessorOfPairOfNeighborsInPersonage or successorOfPairOfNeighborsInPersonage, depending on which direction (descending 
+of the form `predecessorOfPairOfNeighborsInPersonage` or `successorOfPairOfNeighborsInPersonage`, depending on which direction (descending 
 or ascending) you take.
 
 If you have one fraction then, in order to obtain your starting pair of neighboring fractions, you make one-time use of a relatively slow 
-function of the form predecessorInPersonage or successorInPersonage, and then you proceed by calling, in the recurrent manner, 
-the corresponding relatively fast function of the form  predecessorOfPairOfNeighborsInPersonage or successorOfPairOfNeighborsInPersonage.
+function of the form `predecessorInPersonage` or `successorInPersonage`, and then you proceed by calling, in the recurrent manner, 
+the corresponding relatively fast function of the form `predecessorOfPairOfNeighborsInPersonage` or `successorOfPairOfNeighborsInPersonage`.
