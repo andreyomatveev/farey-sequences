@@ -11,8 +11,8 @@ in the monograph [A.O. Matveev, Farey Sequences: Duality and Maps Between Subseq
 - Farey Subsequence FBnm ( in LaTeX: $\mathcal{F}(\mathbb{B}(n),m)$ ), where $n > 1$, and $0 < m < n$.
 
 ## Fractions ##
-In healthy situations, all of the exported functions return NONNEGATIVE reduced fractions (h % k) such that (0 % 1) <= (h % k) <= (1 % 1).
-If you get a NEGATIVE fraction, it means that something went wrong, and the denominator of the resulting negative fraction has 
+In healthy situations, all of the exported functions return reduced fractions (h % k) such that (0 % 1) <= (h % k) <= (1 % 1).
+If you get a *negative* fraction, it means that something went wrong, and the denominator of the resulting negative fraction has 
 no computational meaning, since it just reports a reason of the problem---see the source code of the function you have used.
 
 ## In the Beginning ##
