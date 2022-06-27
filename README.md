@@ -12,7 +12,7 @@ in the monograph [A.O. Matveev, Farey Sequences: Duality and Maps Between Subseq
 
 ## Fractions ##
 In healthy situations, all of the exported functions return reduced fractions (h % k) such that (0 % 1) <= (h % k) <= (1 % 1).
-If you get a *negative* fraction, it means that something went wrong, and the denominator of the resulting negative fraction has 
+If you get a *negative* fraction, it means that something went wrong, and the *denominator* of the resulting negative fraction has 
 no computational meaning, since it just reports a reason of the problem---see the source code of the function you have used.
 
 ## In the Beginning ##
