@@ -1,8 +1,8 @@
-# FareySequencesModule.hs
+# FareySequencesModule.hs #
 A Haskell module FareySequencesModule.hs exporting a dozen of functions coded after several selected formulas presented 
-in the monograph A.O. Matveev, Farey Sequences: Duality and Maps Between Subsequences, Berlin: De Gruyter, 2017, https://doi.org/10.1515/9783110547665. 
+in the monograph [A.O. Matveev, Farey Sequences: Duality and Maps Between Subsequences](https://doi.org/10.1515/9783110547665), Berlin, Boston: De Gruyter, 2017. 
 
-# Our Dramatis Personae 
+## Our Dramatis Personae ##
   (See Table 1.1 of the monograph):
 - (Standard) Farey Sequence Fm ( in LaTeX: $\mathcal{F}_m$ ), where $m > 0$;
 - Farey Subsequence Fml ( in LaTeX: $\mathcal{F}{}_m^l$ ), where $m > 1$, and $0 < l < m$;
@@ -10,12 +10,12 @@ in the monograph A.O. Matveev, Farey Sequences: Duality and Maps Between Subsequ
 - Farey Subsequence FB2mm ( in LaTeX: $\mathcal{F}(\mathbb{B}(2m),m)$ ), where $m > 0$;
 - Farey Subsequence FBnm ( in LaTeX: $\mathcal{F}(\mathbb{B}(n),m)$ ), where $n > 1$, and $0 < m < n$.
 
-# Fractions
+## Fractions ##
 In healthy situations, all of the exported functions return NONNEGATIVE reduced fractions (h % k) such that (0 % 1) <= (h % k) <= (1 % 1).
 If you get a NEGATIVE fraction, it means that something went wrong, and the denominator of the resulting negative fraction has 
 no computational meaning, since it just reports a reason of the problem---see the source code of the function you have used.
 
-# In the Beginning
+## In the Beginning ##
 If you would like to build up a certain subsequence of neighboring (one after another) fractions in one of the above Personae, 
 then first you should realize what you hold in your hands in the beginning.
 
