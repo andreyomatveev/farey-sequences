@@ -26,6 +26,7 @@
 -- you make one-time use of a relatively slow function of the form `predecessorInPersonage' or `successorInPersonage',
 -- and then you proceed by calling, in the recurrent manner, the corresponding relatively fast function
 -- of the form  `predecessorOfPairOfNeighborsInPersonage' or `successorOfPairOfNeighborsInPersonage'.
+
 {-# LANGUAGE MultiWayIf #-}
 {-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
 
@@ -73,9 +74,9 @@ import GHC.Real (denominator, numerator, (%))
 
 predecessorInFm :: Integer -> Rational -> Rational
 -- See Lemma 2.9(i) and Table 2.1 of the monograph. Call for instance:
--- ghci> predecessorInFm 6 (2 % 3)
+--    ghci> predecessorInFm 6 (2 % 3)
 -- to get the result:
--- 3 % 5
+--    3 % 5
 predecessorInFm m successor
   | m < 1 = -1 % 1 -- "N/A: Order m of the sequence should be > 0"
   | successor <= 0 % 1 || successor > 1 % 1 = -1 % 2 --"N/A: Successor should be between (0 % 1) (excluded) and (1 % 1) (included)"
@@ -89,9 +90,9 @@ predecessorInFm m successor
 
 successorInFm :: Integer -> Rational -> Rational
 -- See Lemma 2.9(ii) and Table 2.3 of the monograph. Call for instance:
--- ghci> successorInFm 6 (1 % 3)
+--    ghci> successorInFm 6 (1 % 3)
 -- to get the result:
--- 2 % 5
+--    2 % 5
 successorInFm m predecessor
   | m < 1 = -1 % 1 -- "N/A: Order m of the sequence should be > 0"
   | predecessor < 0 % 1 || predecessor >= 1 % 1 = -1 % 2 --"N/A: Predecessor should be between 0%1 (included) and 1%1 (excluded)"
@@ -105,9 +106,9 @@ successorInFm m predecessor
 
 predecessorInFml :: Integer -> Integer -> Rational -> Rational
 -- See Lemma 2.13(i)(a)-(b) and Table 2.1 of the monograph. Call for instance:
--- ghci> predecessorInFml 6 4 (1 % 1)
+--    ghci> predecessorInFml 6 4 (1 % 1)
 -- to get the result:
--- 4 % 5
+--    4 % 5
 predecessorInFml m l successor
   | m < 2 = -1 % 1 -- "N/A: Parameter m of the sequence should be > 1"
   | l <= 0 || l >= m = -1 % 2 --"N/A: Parameter l should be between 0 (excluded) and m (excluded)"
@@ -126,9 +127,9 @@ predecessorInFml m l successor
 
 successorInFml :: Integer -> Integer -> Rational -> Rational
 -- See Lemma 2.13(ii)(a)-(b) and Table 2.3 of the monograph. Call for instance:
--- ghci> successorInFml 6 4 (4 % 5)
+--    ghci> successorInFml 6 4 (4 % 5)
 -- to get the result:
--- 1 % 1
+--    1 % 1
 successorInFml m l predecessor
   | m < 2 = -1 % 1 -- "N/A: Parameter m of the sequence should be > 1"
   | l <= 0 || l >= m = -1 % 2 --"N/A: Parameter l should be between 0 (excluded) and m (excluded)"
@@ -147,9 +148,9 @@ successorInFml m l predecessor
 
 predecessorInGml :: Integer -> Integer -> Rational -> Rational
 -- See Lemma 2.15(i)(a)-(b) and Table 2.1 of the monograph. Call for instance:
--- ghci> predecessorInGml 6 4 (1 % 3)
+--    ghci> predecessorInGml 6 4 (1 % 3)
 -- to get the result:
--- 0 % 1
+--    0 % 1
 predecessorInGml m l successor
   | m < 2 = -1 % 1 -- "N/A: Parameter m of the sequence should be > 1"
   | l <= 0 || l >= m = -1 % 2 --"N/A: Parameter l should be between 0 (excluded) and m (excluded)"
@@ -170,9 +171,9 @@ predecessorInGml m l successor
 
 successorInGml :: Integer -> Integer -> Rational -> Rational
 -- See Lemma 2.15(ii)(a)-(b) and Table 2.3 of the monograph. Call for instance:
--- ghci> successorInGml 6 4 (1 % 3)
+--    ghci> successorInGml 6 4 (1 % 3)
 -- to get the result:
--- 1 % 2
+--    1 % 2
 successorInGml m l predecessor
   | m < 2 = -1 % 1 -- "N/A: Parameter m of the sequence should be > 1"
   | l <= 0 || l >= m = -1 % 2 --"N/A: Parameter l should be between 0 (excluded) and m (excluded)"
@@ -197,9 +198,9 @@ predecessorInFB2mm :: Integer -> Rational -> Rational
 -- see Renark 2.11 and Table 2.5;
 -- see Renark 2.24 and Table 2.7;
 -- see Proposition 2.12 (i) (a) and Proposition 2.12 (ii) (a), and Table 2.1 of the monograph. Call for instance:
--- ghci> predecessorInFB2mm 3 (2 % 5)
+--    ghci> predecessorInFB2mm 3 (2 % 5)
 -- to get the result:
--- 1 % 3
+--    1 % 3
 predecessorInFB2mm m successor
   | m < 1 = -1 % 1 -- "N/A: Parameter m of the sequence should be > 0"
   | successor <= 0 % 1 || successor > 1 % 1 = -1 % 2 --"N/A: Successor should be between (0 % 1) (excluded) and (1 % 1) (included)"
@@ -224,9 +225,9 @@ successorInFB2mm :: Integer -> Rational -> Rational
 -- see Renark 2.11 and Table 2.5;
 -- see Renark 2.25 and Table 2.8;
 -- see Proposition 2.12 (i) (b) and Proposition 2.12 (ii) (b), and Table 2.3 of the monograph. Call for instance:
--- ghci> successorInFB2mm 3 (3 % 5)
+--    ghci> successorInFB2mm 3 (3 % 5)
 -- to get the result:
--- 2 % 3
+--    2 % 3
 successorInFB2mm m predecessor
   | m < 1 = -1 % 1 -- "N/A: Parameter m of the sequence should be > 0"
   | predecessor < 0 % 1 || predecessor >= 1 % 1 = -1 % 2 --"N/A: Predecessor should be between (0 % 1) (excluded) and (1 % 1) (included)"
@@ -252,9 +253,9 @@ predecessorInFBnm :: Integer -> Integer -> Rational -> Rational
 -- See CORRECTED Remark 2.42 and Table 2.7;
 -- see Propositions 2.18(i)(a) and 2.18(ii)(a), and Table 2.1;
 -- see Propositions 2.19(i)(a) and 2.19(ii)(a), and Table 2.1.  Call for instance:
--- ghci> predecessorInFBnm 6 4 (3 % 4)
+--    ghci> predecessorInFBnm 6 4 (3 % 4)
 -- to get the result:
--- 2 % 3
+--    2 % 3
 predecessorInFBnm n m successor
   | n == 2 * m = predecessorInFB2mm m successor
   | n < 2 = -1 % 1 -- "N/A: Parameter n of the sequence should be > 1"
@@ -295,9 +296,9 @@ successorInFBnm :: Integer -> Integer -> Rational -> Rational
 -- see Remark 2.43(i)-(ii) and Table 2.8;
 -- see Propositions 2.18(i)(b) and 2.18(ii)(b), and Table 2.3;
 -- see Propositions 2.19(i)(b) and 2.19(ii)(b), and Table 2.3.  Call for instance:
--- ghci> successorInFBnm 6 4 (4 % 5)
+--    ghci> successorInFBnm 6 4 (4 % 5)
 -- to get the result:
--- 1 % 1
+--    1 % 1
 successorInFBnm n m predecessor
   | n == 2 * m = successorInFB2mm m predecessor
   | n < 2 = -1 % 1 -- "N/A: Parameter n of the sequence should be > 1"
@@ -483,13 +484,13 @@ successorOfTwoThirdsInFBnm n m
 
 predecessorOfPairOfNeighborsInFm :: Integer -> (Rational, Rational) -> Bool -> Rational
 -- See Proposition 1.25 and Table 1.6 of the monograph. Call for instance:
--- ghci> predecessorOfPairOfNeighborsInFm 6 (1 % 3,  2 % 5) True
+--    ghci> predecessorOfPairOfNeighborsInFm 6 (1 % 3,  2 % 5) True
 -- to get the result:
--- 1 % 4
+--    1 % 4
 -- Also call:
--- ghci> predecessorOfPairOfNeighborsInFm 6 (predecessorInFm 6 (2 % 5), 2 % 5) False
+--    ghci> predecessorOfPairOfNeighborsInFm 6 (predecessorInFm 6 (2 % 5), 2 % 5) False
 -- to get the same result:
--- 1 % 4
+--    1 % 4
 predecessorOfPairOfNeighborsInFm m (successor, rightNeighborOfSuccessor) checkPair
   -- If checkPair == True, then to check whether the input pair is indeed a pair of neighboring fractions in the sequence Fm
   | m < 1 = -1 % 1 -- "N/A: Order m of the sequence should be > 0"
@@ -505,13 +506,13 @@ predecessorOfPairOfNeighborsInFm m (successor, rightNeighborOfSuccessor) checkPa
 
 successorOfPairOfNeighborsInFm :: Integer -> (Rational, Rational) -> Bool -> Rational
 -- See Proposition 1.25 and Table 1.6 of the monograph. Call for instance:
--- ghci> successorOfPairOfNeighborsInFm 6 (3 % 5, 2 % 3) True
+--    ghci> successorOfPairOfNeighborsInFm 6 (3 % 5, 2 % 3) True
 -- to get the result:
--- 3 % 4
+--    3 % 4
 -- Also call:
--- ghci>  successorOfPairOfNeighborsInFm 6 (3 % 5, successorInFm 6 (3 % 5)) False
+--    ghci>  successorOfPairOfNeighborsInFm 6 (3 % 5, successorInFm 6 (3 % 5)) False
 -- to get the same result:
--- 3 % 4
+--    3 % 4
 successorOfPairOfNeighborsInFm m (leftNeighborOfPredecessor, predecessor) checkPair
   -- If checkPair == True, then to check whether the input pair is indeed a pair of neighboring fractions in the sequence Fm
   | m < 1 = -1 % 1 -- "N/A: Order m of the sequence should be > 0"
@@ -527,13 +528,13 @@ successorOfPairOfNeighborsInFm m (leftNeighborOfPredecessor, predecessor) checkP
 
 predecessorOfPairOfNeighborsInFml :: Integer -> Integer -> (Rational, Rational) -> Bool -> Rational
 -- See Proposition 1.26 (ii) (a) and Table 1.6 of the monograph. Call for instance:
--- ghci> predecessorOfPairOfNeighborsInFml 6 4 (4 % 5, 1 % 1) True
+--    ghci> predecessorOfPairOfNeighborsInFml 6 4 (4 % 5, 1 % 1) True
 -- to get the result:
--- 3 % 4
+--    3 % 4
 -- Also call:
--- ghci>  predecessorOfPairOfNeighborsInFml 6 4 (predecessorInFml 6 4 (1 % 1), 1 % 1) False
+--    ghci>  predecessorOfPairOfNeighborsInFml 6 4 (predecessorInFml 6 4 (1 % 1), 1 % 1) False
 -- to get the same result:
--- 3 % 4
+--    3 % 4
 predecessorOfPairOfNeighborsInFml m l (successor, rightNeighborOfSuccessor) checkPair
   -- If checkPair == True, then to check whether the input pair is indeed a pair of neighboring fractions in the sequence Fml
   | m < 2 = -1 % 1 -- "N/A: Parameter m of the sequence should be > 1"
@@ -558,13 +559,13 @@ predecessorOfPairOfNeighborsInFml m l (successor, rightNeighborOfSuccessor) chec
 
 successorOfPairOfNeighborsInFml :: Integer -> Integer -> (Rational, Rational) -> Bool -> Rational
 -- See Proposition 1.26 (ii) (a) and Table 1.6 of the monograph. Call for instance:
--- ghci> successorOfPairOfNeighborsInFml 6 4 (3 % 4, 4 % 5) True
+--    ghci> successorOfPairOfNeighborsInFml 6 4 (3 % 4, 4 % 5) True
 -- to get the result:
--- 1 % 1
+--    1 % 1
 -- Also call:
--- ghci>  successorOfPairOfNeighborsInFml 6 4 (3 % 4, successorInFml 6 4 (3 % 4)) False
+--    ghci>  successorOfPairOfNeighborsInFml 6 4 (3 % 4, successorInFml 6 4 (3 % 4)) False
 -- to get the same result:
--- 1 % 1
+--    1 % 1
 successorOfPairOfNeighborsInFml m l (leftNeighborOfPredecessor, predecessor) checkPair
   -- If checkPair == True, then to check whether the input pair is indeed a pair of neighboring fractions in the sequence Fml
   | m < 2 = -1 % 1 -- "N/A: Parameter m of the sequence should be > 1"
@@ -589,13 +590,13 @@ successorOfPairOfNeighborsInFml m l (leftNeighborOfPredecessor, predecessor) che
 
 predecessorOfPairOfNeighborsInGml :: Integer -> Integer -> (Rational, Rational) -> Bool -> Rational
 -- See Proposition 1.27 (ii) (a) and Table 1.6 of the monograph. Call for instance:
--- ghci> predecessorOfPairOfNeighborsInGml 6 4 (1 % 2, 3 % 5) True
+--    ghci> predecessorOfPairOfNeighborsInGml 6 4 (1 % 2, 3 % 5) True
 -- to get the result:
--- 1 % 3
+--    1 % 3
 -- Also call:
--- ghci>  predecessorOfPairOfNeighborsInGml 6 4 (predecessorInGml 6 4 (3 % 5), 3 % 5) False
+--    ghci>  predecessorOfPairOfNeighborsInGml 6 4 (predecessorInGml 6 4 (3 % 5), 3 % 5) False
 -- to get the same result:
--- 1 % 3
+--    1 % 3
 predecessorOfPairOfNeighborsInGml m l (successor, rightNeighborOfSuccessor) checkPair
   -- If checkPair == True, then to check whether the input pair is indeed a pair of neighboring fractions in the sequence Gml
   | m < 2 = -1 % 1 -- "N/A: Parameter m of the sequence should be > 1"
@@ -620,13 +621,13 @@ predecessorOfPairOfNeighborsInGml m l (successor, rightNeighborOfSuccessor) chec
 
 successorOfPairOfNeighborsInGml :: Integer -> Integer -> (Rational, Rational) -> Bool -> Rational
 -- See Proposition 1.27 (ii) (b) and Table 1.6 of the monograph. Call for instance:
--- ghci> successorOfPairOfNeighborsInGml 6 4 (1 % 3, 1 % 2) True
+--    ghci> successorOfPairOfNeighborsInGml 6 4 (1 % 3, 1 % 2) True
 -- to get the result:
--- 3 % 5
+--    3 % 5
 -- Also call:
--- ghci>  successorOfPairOfNeighborsInGml 6 4 (1 % 3, successorInGml 6 4 (1 % 3)) False
+--    ghci>  successorOfPairOfNeighborsInGml 6 4 (1 % 3, successorInGml 6 4 (1 % 3)) False
 -- to get the same result:
--- 3 % 5
+--    3 % 5
 successorOfPairOfNeighborsInGml m l (leftNeighborOfPredecessor, predecessor) checkPair
   -- If checkPair == True, then to check whether the input pair is indeed a pair of neighboring fractions in the sequence Gml
   | m < 2 = -1 % 1 -- "N/A: Parameter m of the sequence should be > 1"
@@ -651,13 +652,13 @@ successorOfPairOfNeighborsInGml m l (leftNeighborOfPredecessor, predecessor) che
 
 predecessorOfPairOfNeighborsInFBnm :: Integer -> Integer -> (Rational, Rational) -> Bool -> Rational
 -- See Proposition 1.28 (ii) (a) and Table 1.6 of the monograph. Call for instance:
--- ghci> predecessorOfPairOfNeighborsInFBnm 6 4 (4 % 5, 1 % 1) True
+--    ghci> predecessorOfPairOfNeighborsInFBnm 6 4 (4 % 5, 1 % 1) True
 -- to get the result:
--- 3 % 4
+--    3 % 4
 -- Also call:
--- ghci>  predecessorOfPairOfNeighborsInFBnm 6 4 (predecessorInFBnm 6 4 (1 % 1), 1 % 1) False
+--    ghci>  predecessorOfPairOfNeighborsInFBnm 6 4 (predecessorInFBnm 6 4 (1 % 1), 1 % 1) False
 -- to get the same result:
--- 3 % 4
+--    3 % 4
 predecessorOfPairOfNeighborsInFBnm n m (successor, rightNeighborOfSuccessor) checkPair
   -- If checkPair == True, then to check whether the input pair is indeed a pair of neighboring fractions in the sequence FBnm
   | n < 2 = -1 % 1 -- "N/A: Parameter n of the sequence should be > 1"
@@ -686,13 +687,13 @@ predecessorOfPairOfNeighborsInFB2mm m (successor, rightNeighborOfSuccessor) chec
 
 successorOfPairOfNeighborsInFBnm :: Integer -> Integer -> (Rational, Rational) -> Bool -> Rational
 -- See Proposition 1.28 (ii) (b) and Table 1.6 of the monograph. Call for instance:
--- ghci> successorOfPairOfNeighborsInFBnm 6 4 (1 % 3, 1 % 2) True
+--    ghci> successorOfPairOfNeighborsInFBnm 6 4 (1 % 3, 1 % 2) True
 -- to get the result:
--- 3 % 5
+--    3 % 5
 -- Also call: successorOfPairOfNeighborsInFBnm 6 4 (1 % 3, successorInFBnm 6 4 (1 % 3)) False
--- ghci>
+--    ghci>
 -- to get the same result:
--- 3 % 5
+--    3 % 5
 successorOfPairOfNeighborsInFBnm n m (leftNeighborOfPredecessor, predecessor) checkPair
   -- If checkPair == True, then to check whether the input pair is indeed a pair of neighboring fractions in the sequence FBnm
   | n < 2 = -1 % 1 -- "N/A: Parameter n of the sequence should be > 1"
