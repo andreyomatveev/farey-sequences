@@ -86,7 +86,7 @@ predecessorInFm m successor
       then predecessorOfOneFirstInFm m
       else
         let refPoint = ceiling (toRational (numerator successor * m) / toRational (denominator successor))
-         in getNumeratorAndReturnPredecesssor (findNumeratorOfPredecessor (refPoint - numerator successor, refPoint - 1) successor) successor
+         in getNumeratorAndReturnPredecessor (findNumeratorOfPredecessor (refPoint - numerator successor, refPoint - 1) successor) successor
 
 successorInFm :: Integer -> Rational -> Rational
 -- See Lemma 2.9(ii) and Table 2.3 of the monograph. Call for instance:
@@ -120,10 +120,10 @@ predecessorInFml m l successor
       then predecessorOfOneFirstInFml m l
       else
         if numerator successor * m - denominator successor * l >= 1
-          then getNumeratorAndReturnPredecesssor (findNumeratorOfPredecessor (l - numerator successor + 1, l) successor) successor
+          then getNumeratorAndReturnPredecessor (findNumeratorOfPredecessor (l - numerator successor + 1, l) successor) successor
           else
             let refPoint = ceiling (toRational (numerator successor * m) / toRational (denominator successor))
-             in getNumeratorAndReturnPredecesssor (findNumeratorOfPredecessor (refPoint - numerator successor, refPoint - 1) successor) successor
+             in getNumeratorAndReturnPredecessor (findNumeratorOfPredecessor (refPoint - numerator successor, refPoint - 1) successor) successor
 
 successorInFml :: Integer -> Integer -> Rational -> Rational
 -- See Lemma 2.13(ii)(a)-(b) and Table 2.3 of the monograph. Call for instance:
@@ -164,10 +164,10 @@ predecessorInGml m l successor
         if numerator successor * m - denominator successor * l >= 1
           then
             let refPoint = ceiling (toRational (numerator successor * m) / toRational (denominator successor))
-             in getNumeratorAndReturnPredecesssor (findNumeratorOfPredecessor (refPoint - numerator successor, refPoint - 1) successor) successor
+             in getNumeratorAndReturnPredecessor (findNumeratorOfPredecessor (refPoint - numerator successor, refPoint - 1) successor) successor
           else
             let refPoint = ceiling (toRational (numerator successor * (m - l)) / toRational (denominator successor - numerator successor))
-             in getNumeratorAndReturnPredecesssor (findNumeratorOfPredecessor (refPoint - numerator successor, refPoint - 1) successor) successor
+             in getNumeratorAndReturnPredecessor (findNumeratorOfPredecessor (refPoint - numerator successor, refPoint - 1) successor) successor
 
 successorInGml :: Integer -> Integer -> Rational -> Rational
 -- See Lemma 2.15(ii)(a)-(b) and Table 2.3 of the monograph. Call for instance:
@@ -214,10 +214,10 @@ predecessorInFB2mm m successor
         | successor == 1 % 3 -> predecessorOfOneThirdInFB2mm m
         | otherwise ->
           if successor > 1 % 2
-            then getNumeratorAndReturnPredecesssor (findNumeratorOfPredecessor (m - numerator successor + 1, m) successor) successor
+            then getNumeratorAndReturnPredecessor (findNumeratorOfPredecessor (m - numerator successor + 1, m) successor) successor
             else
               let refPoint = ceiling (toRational (numerator successor * m) / toRational (denominator successor - numerator successor))
-               in getNumeratorAndReturnPredecesssor (findNumeratorOfPredecessor (refPoint - numerator successor, refPoint - 1) successor) successor
+               in getNumeratorAndReturnPredecessor (findNumeratorOfPredecessor (refPoint - numerator successor, refPoint - 1) successor) successor
 
 successorInFB2mm :: Integer -> Rational -> Rational
 -- See Renark 1.17 and Table 1.5;
@@ -273,19 +273,19 @@ predecessorInFBnm n m successor
           if n < 2 * m
             then
               ( if (successor > 1 % 2) && (numerator successor * n - denominator successor * m >= 1)
-                  then getNumeratorAndReturnPredecesssor (findNumeratorOfPredecessor (m - numerator successor + 1, m) successor) successor
+                  then getNumeratorAndReturnPredecessor (findNumeratorOfPredecessor (m - numerator successor + 1, m) successor) successor
                   else
                     ( let refPoint = ceiling (toRational (numerator successor * (n - m)) / toRational (denominator successor - numerator successor))
-                       in getNumeratorAndReturnPredecesssor (findNumeratorOfPredecessor (refPoint - numerator successor, refPoint - 1) successor) successor
+                       in getNumeratorAndReturnPredecessor (findNumeratorOfPredecessor (refPoint - numerator successor, refPoint - 1) successor) successor
                     )
               )
             else -- n > 2 * m
 
               ( if (successor > 1 % 2) || ((numerator successor * n - denominator successor * m) >= 1)
-                  then getNumeratorAndReturnPredecesssor (findNumeratorOfPredecessor (m - numerator successor + 1, m) successor) successor
+                  then getNumeratorAndReturnPredecessor (findNumeratorOfPredecessor (m - numerator successor + 1, m) successor) successor
                   else
                     ( let refPoint = ceiling (toRational (numerator successor * (n - m)) / toRational (denominator successor - numerator successor))
-                       in getNumeratorAndReturnPredecesssor (findNumeratorOfPredecessor (refPoint - numerator successor, refPoint - 1) successor) successor
+                       in getNumeratorAndReturnPredecessor (findNumeratorOfPredecessor (refPoint - numerator successor, refPoint - 1) successor) successor
                     )
               )
 
@@ -332,8 +332,8 @@ successorInFBnm n m predecessor
                     )
               )
 
-getNumeratorAndReturnPredecesssor :: Integer -> Rational -> Rational
-getNumeratorAndReturnPredecesssor a successor = a % ((denominator successor * a + 1) `div` numerator successor)
+getNumeratorAndReturnPredecessor :: Integer -> Rational -> Rational
+getNumeratorAndReturnPredecessor a successor = a % ((denominator successor * a + 1) `div` numerator successor)
 
 getNumeratorAndReturnSuccessor :: Integer -> Rational -> Rational
 getNumeratorAndReturnSuccessor a predecessor = a % ((denominator predecessor * a - 1) `div` numerator predecessor)
