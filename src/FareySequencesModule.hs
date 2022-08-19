@@ -159,7 +159,7 @@ predecessorInGml m l successor
   | l + denominator successor - m > numerator successor = -1 % 5 --"N/A: The quantity (l + denominator - m) should not exceed the numerator of the successor"
   | otherwise =
     if successor == 1 % 1
-      then predecessorOfOneFirstInGml m l
+      then predecessorOfOneFirstInGml m
       else
         if numerator successor * m - denominator successor * l >= 1
           then
@@ -362,9 +362,9 @@ successorOfZeroFirstInFml :: Integer -> Rational
 -- See Remark 1.9 and Table 1.5  of the monograph
 successorOfZeroFirstInFml m = 1 % m
 
-predecessorOfOneFirstInGml :: Integer -> Integer -> Rational
+predecessorOfOneFirstInGml :: Integer -> Rational
 -- See Remark 1.13 and Table 1.5  of the monograph
-predecessorOfOneFirstInGml m l = (m - 1) % m
+predecessorOfOneFirstInGml m = (m - 1) % m
 
 successorOfZeroFirstInGml :: Integer -> Integer -> Rational
 -- See Remark 1.13 and Table 1.5  of the monograph
