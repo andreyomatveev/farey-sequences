@@ -138,7 +138,7 @@ successorInFml m l predecessor
   | l < numerator predecessor = -1 % 5 --"N/A: Numerator of the predecessor should be between 1 (included) and l (included)"
   | otherwise =
     if predecessor == 0 % 1
-      then successorOfZeroFirstInFml m l
+      then successorOfZeroFirstInFml m
       else
         if denominator predecessor * l - numerator predecessor * m >= 1
           then
@@ -358,9 +358,9 @@ predecessorOfOneFirstInFml :: Integer -> Rational
 -- See Remark 1.9 and Table 1.5  of the monograph
 predecessorOfOneFirstInFml l = l % (l + 1)
 
-successorOfZeroFirstInFml :: Integer -> Integer -> Rational
+successorOfZeroFirstInFml :: Integer -> Rational
 -- See Remark 1.9 and Table 1.5  of the monograph
-successorOfZeroFirstInFml m l = 1 % m
+successorOfZeroFirstInFml m = 1 % m
 
 predecessorOfOneFirstInGml :: Integer -> Integer -> Rational
 -- See Remark 1.13 and Table 1.5  of the monograph
