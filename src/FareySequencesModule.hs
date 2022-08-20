@@ -364,7 +364,6 @@ predecessorInFBnm n m successor
                                   (refPoint - numerator successor, refPoint - 1)
                                   successor)
                                successor))
-                 -- n > 2 * m
            else (if (successor > 1 % 2) ||
                     ((numerator successor * n - denominator successor * m) >= 1)
                    then getNumeratorAndReturnPredecessor
@@ -430,7 +429,6 @@ successorInFBnm n m predecessor
                                   , refPoint - 1)
                                   predecessor)
                                predecessor))
-                 -- n > 2*m
            else (if (predecessor > 1 % 2) ||
                     (denominator predecessor * m - numerator predecessor * n <=
                      1)
