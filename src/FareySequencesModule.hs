@@ -296,7 +296,8 @@ successorInFB2mm m predecessor
   | predecessor < 0 % 1 || predecessor >= 1 % 1 = -1 % 2 --"N/A: Predecessor should be between (0 % 1) (excluded) and (1 % 1) (included)"
   | denominator predecessor > 2 * m = -1 % 3 --"N/A: Denominator of the predecessor should not exceed (2 * m)"
   | denominator predecessor - m > numerator predecessor ||
-      numerator predecessor > m = -1 % 4 --"N/A: Numerator of the predecessor should be between (denominator - m) (included) and m (included)"
+      numerator predecessor > m =
+    -1 % 4 --"N/A: Numerator of the predecessor should be between (denominator - m) (included) and m (included)"
   | otherwise =
     if | predecessor == 0 % 1 -> successorOfZeroFirstInFB2mm m
        | predecessor == 1 % 3 -> successorOfOneThirdInFB2mm m
@@ -337,7 +338,8 @@ predecessorInFBnm n m successor
   | successor <= 0 % 1 || successor > 1 % 1 = -1 % 3 --"N/A: Successor should be between (0 % 1) (excluded) and (1 % 1) (included)"
   | denominator successor > n = -1 % 4 --"N/A: Denominator of the successor should not exceed n"
   | m + denominator successor - n > numerator successor ||
-      numerator successor > m = -1 % 5 --"N/A: Numerator of the successor should be between (m + denominator - n) (included) and m (included)"
+      numerator successor > m =
+    -1 % 5 --"N/A: Numerator of the successor should be between (m + denominator - n) (included) and m (included)"
   | otherwise =
     if | successor == 1 % 1 -> predecessorOfOneFirstInFBnm m
        | successor == 2 % 3 -> predecessorOfTwoThirdsInFBnm n m
@@ -398,7 +400,8 @@ successorInFBnm n m predecessor
   | predecessor < 0 % 1 || predecessor >= 1 % 1 = -1 % 3 --"N/A: Predecessor should be between (0 % 1) (excluded) and (1 % 1) (included)"
   | denominator predecessor > n = -1 % 4 --"N/A: Denominator of the predecessor should not exceed `n' "
   | m + denominator predecessor - n > numerator predecessor ||
-      numerator predecessor > m = -1 % 5 --"N/A: Numerator of the predecessor should be between (m + denominator - n) (included) and m (included)"
+      numerator predecessor > m =
+    -1 % 5 --"N/A: Numerator of the predecessor should be between (m + denominator - n) (included) and m (included)"
   | otherwise =
     if | predecessor == 0 % 1 -> successorOfZeroFirstInFBnm n m
        | predecessor == 1 % 3 -> successorOfOneThirdInFBnm n m
@@ -593,9 +596,10 @@ successorOfOneThirdInFBnm n m
 
 successorOfOneSecondInFBnm :: Integer -> Integer -> Rational
 -- See Remark 2.17 and Table 2.5 of the monograph
-successorOfOneSecondInFBnm n m
-  | n < 2 * m = (n - m + 1) % (2 * (n - m) + 1)
-  | otherwise = m % (2 * m - 1)
+successorOfOneSecondInFBnm n m =
+  if n < 2 * m
+    then (n - m + 1) % (2 * (n - m) + 1)
+    else m % (2 * m - 1)
 
 successorOfTwoThirdsInFBnm :: Integer -> Integer -> Rational
 -- See Remarks 2.43(i)-(ii) and Table 2.8 of the monograph
@@ -775,7 +779,8 @@ predecessorOfPairOfNeighborsInGml m l (successor, rightNeighborOfSuccessor) chec
   | rightNeighborOfSuccessor > 1 % 1 = -1 % 7 --"N/A: rightNeighborOfSuccessor should be between successor (excluded) and (1 % 1) (included)"
   | denominator rightNeighborOfSuccessor > m = -1 % 8 --"N/A: Denominator of the rightNeighborOfSuccessor should not exceed the parameter m of the sequence"
   | l + denominator rightNeighborOfSuccessor - m >
-      numerator rightNeighborOfSuccessor = -1 % 9 --"N/A: The quantity (l + denominator - m) should not exceed the numerator of the rightNeighborOfSuccessor"
+      numerator rightNeighborOfSuccessor =
+    -1 % 9 --"N/A: The quantity (l + denominator - m) should not exceed the numerator of the rightNeighborOfSuccessor"
   | not checkPair ||
       checkPair && successor == predecessorInGml m l rightNeighborOfSuccessor =
     if numerator successor * m - denominator successor * l >= 1
@@ -821,7 +826,8 @@ successorOfPairOfNeighborsInGml m l (leftNeighborOfPredecessor, predecessor) che
   | leftNeighborOfPredecessor < 0 % 1 = -1 % 7 --"N/A: leftNeighborOfPredecessor should be between (0 % 1) (included) and predecessor (excluded)"
   | denominator leftNeighborOfPredecessor > m = -1 % 8 --"N/A: Denominator of the leftNeighborOfPredecessor should not exceed n"
   | l + denominator leftNeighborOfPredecessor - m >
-      numerator leftNeighborOfPredecessor = -1 % 9 --"N/A: The quantity (l + denominator - m) should not exceed the numerator of the predecessor"
+      numerator leftNeighborOfPredecessor =
+    -1 % 9 --"N/A: The quantity (l + denominator - m) should not exceed the numerator of the predecessor"
   | not checkPair ||
       checkPair && predecessor == successorInGml m l leftNeighborOfPredecessor =
     if denominator predecessor * l - numerator predecessor * m >= 1
@@ -864,12 +870,14 @@ predecessorOfPairOfNeighborsInFBnm n m (successor, rightNeighborOfSuccessor) che
   | successor <= 0 % 1 || successor >= 1 % 1 = -1 % 4 --"N/A: successor should be between (0 % 1) (excluded) and (1 % 1) (excluded)"
   | denominator successor > n = -1 % 5 --"N/A: Denominator of the successor should not exceed n"
   | m + denominator successor - n > numerator successor ||
-      numerator successor > m = -1 % 6 --"N/A: Numerator of the successor should be between (m + denominator - n) (included) and m (included)"
+      numerator successor > m =
+    -1 % 6 --"N/A: Numerator of the successor should be between (m + denominator - n) (included) and m (included)"
   | rightNeighborOfSuccessor > 1 % 1 = -1 % 7 --"N/A: rightNeighborOfSuccessor should be between successor (excluded) and (1 % 1) (included)"
   | denominator rightNeighborOfSuccessor > n = -1 % 8 --"N/A: Denominator of the rightNeighborOfSuccessor should not exceed n"
   | m + denominator rightNeighborOfSuccessor - n >
       numerator rightNeighborOfSuccessor ||
-      numerator rightNeighborOfSuccessor > m = -1 % 9 --"N/A: Numerator of the rightNeighborOfSuccessor should be between (m + denominator - n) (included) and m (included)"
+      numerator rightNeighborOfSuccessor > m =
+    -1 % 9 --"N/A: Numerator of the rightNeighborOfSuccessor should be between (m + denominator - n) (included) and m (included)"
   | not checkPair ||
       checkPair && successor == predecessorInFBnm n m rightNeighborOfSuccessor =
     if numerator successor * n - denominator successor * m >= 1
@@ -921,12 +929,14 @@ successorOfPairOfNeighborsInFBnm n m (leftNeighborOfPredecessor, predecessor) ch
   | predecessor >= 1 % 1 || predecessor <= 0 % 1 = -1 % 4 --"N/A: predecessor should be between (0 % 1) (excluded) and (1 % 1) (excluded)"
   | denominator predecessor > n = -1 % 5 --"N/A: Denominator of the predecessor should not exceed n"
   | m + denominator predecessor - n > numerator predecessor ||
-      numerator predecessor > m = -1 % 6 --"N/A: Numerator of the predecessor should be between (m + denominator - n) (included) and m (included)"
+      numerator predecessor > m =
+    -1 % 6 --"N/A: Numerator of the predecessor should be between (m + denominator - n) (included) and m (included)"
   | leftNeighborOfPredecessor < 0 % 1 = -1 % 7 --"N/A: leftNeighborOfPredecessor should be between 0%1 (included) and predecessor (excluded)"
   | denominator leftNeighborOfPredecessor > n = -1 % 8 --"N/A: Denominator of the leftNeighborOfPredecessor should not exceed n"
   | m + denominator leftNeighborOfPredecessor - n >
       numerator leftNeighborOfPredecessor ||
-      numerator leftNeighborOfPredecessor > m = -1 % 9 --"N/A: Numerator of the leftNeighborOfPredecessor should be between (m + denominator - n) (included) and m (included)"
+      numerator leftNeighborOfPredecessor > m =
+    -1 % 9 --"N/A: Numerator of the leftNeighborOfPredecessor should be between (m + denominator - n) (included) and m (included)"
   | not checkPair ||
       checkPair && predecessor == successorInFBnm n m leftNeighborOfPredecessor =
     if denominator predecessor * m - numerator predecessor * n >= 1
