@@ -193,10 +193,10 @@ successorInGml m l predecessor
              in getNumeratorAndReturnSuccessor (findNumeratorOfSuccessor (refPoint - numerator predecessor, refPoint - 1) predecessor) predecessor
 
 predecessorInFB2mm :: Integer -> Rational -> Rational
--- See Renark 1.17 and Table 1.5;
--- see Renark 2.25 and Table 2.8;
--- see Renark 2.11 and Table 2.5;
--- see Renark 2.24 and Table 2.7;
+-- See Remark 1.17 and Table 1.5;
+-- see Remark 2.25 and Table 2.8;
+-- see Remark 2.11 and Table 2.5;
+-- see Remark 2.24 and Table 2.7;
 -- see Proposition 2.12 (i) (a) and Proposition 2.12 (ii) (a), and Table 2.1 of the monograph. Call for instance:
 --    ghci> predecessorInFB2mm 3 (2 % 5)
 -- to get the result:
@@ -220,10 +220,10 @@ predecessorInFB2mm m successor
                in getNumeratorAndReturnPredecessor (findNumeratorOfPredecessor (refPoint - numerator successor, refPoint - 1) successor) successor
 
 successorInFB2mm :: Integer -> Rational -> Rational
--- See Renark 1.17 and Table 1.5;
--- see Renark 2.24 and Table 2.7;
--- see Renark 2.11 and Table 2.5;
--- see Renark 2.25 and Table 2.8;
+-- See Remark 1.17 and Table 1.5;
+-- see Remark 2.24 and Table 2.7;
+-- see Remark 2.11 and Table 2.5;
+-- see Remark 2.25 and Table 2.8;
 -- see Proposition 2.12 (i) (b) and Proposition 2.12 (ii) (b), and Table 2.3 of the monograph. Call for instance:
 --    ghci> successorInFB2mm 3 (3 % 5)
 -- to get the result:
