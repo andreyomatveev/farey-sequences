@@ -624,7 +624,7 @@ predecessorOfPairOfNeighborsInFm ::
 predecessorOfPairOfNeighborsInFm m (successor, rightNeighborOfSuccessor) checkPair
   -- If checkPair == True, then to check whether the input pair is indeed a pair of neighboring fractions in the sequence Fm
   | m < 1 = -1 % 1 -- "N/A: Order m of the sequence should be > 0"
-  | successor >= rightNeighborOfSuccessor = -1 % 2 -- "N/A We should have successor < rightNeighborOfSuccessor"
+  | successor >= rightNeighborOfSuccessor = -1 % 2 -- "N/A: We should have successor < rightNeighborOfSuccessor"
   | successor <= 0 % 1 || successor >= 1 % 1 = -1 % 3 --"N/A: successor should be between (0 % 1) (excluded) and (1 % 1) (excluded)"
   | denominator successor > m = -1 % 4 --"N/A: Denominator of the successor should not exceed the order m of the sequence"
   | rightNeighborOfSuccessor > 1 % 1 = -1 % 5 --"N/A: rightNeighborOfSuccessor should be between successor (excluded) and (1 % 1) (included)"
@@ -684,7 +684,7 @@ predecessorOfPairOfNeighborsInFml m l (successor, rightNeighborOfSuccessor) chec
   -- If checkPair == True, then to check whether the input pair is indeed a pair of neighboring fractions in the sequence Fml
   | m < 2 = -1 % 1 -- "N/A: Parameter m of the sequence should be > 1"
   | l <= 0 || l >= m = -1 % 2 --"N/A: Parameter l should be between 0 (excluded) and m (excluded)"
-  | successor >= rightNeighborOfSuccessor = -1 % 3 -- "N/A We should have successor < rightNeighborOfSuccessor"
+  | successor >= rightNeighborOfSuccessor = -1 % 3 -- "N/A: We should have successor < rightNeighborOfSuccessor"
   | successor <= 0 % 1 || successor > 1 % 1 = -1 % 4 --"N/A: successor should be between (0 % 1) (excluded) and (1 % 1) (included)"
   | denominator successor > m = -1 % 5 --"N/A: Denominator of the successor should not exceed the parameter m of the sequence"
   | l < numerator successor = -1 % 6 --"N/A: Numerator of the successor should be between 1 (included) and l (included)"
@@ -770,7 +770,7 @@ predecessorOfPairOfNeighborsInGml m l (successor, rightNeighborOfSuccessor) chec
   -- If checkPair == True, then to check whether the input pair is indeed a pair of neighboring fractions in the sequence Gml
   | m < 2 = -1 % 1 -- "N/A: Parameter m of the sequence should be > 1"
   | l <= 0 || l >= m = -1 % 2 --"N/A: Parameter l should be between 0 (excluded) and m (excluded)"
-  | successor >= rightNeighborOfSuccessor = -1 % 3 -- "N/A We should have successor < rightNeighborOfSuccessor"
+  | successor >= rightNeighborOfSuccessor = -1 % 3 -- "N/A: We should have successor < rightNeighborOfSuccessor"
   | successor <= 0 % 1 || successor > 1 % 1 = -1 % 4 --"N/A: successor should be between (0 % 1) (excluded) and (1 % 1) (included)"
   | denominator successor > m = -1 % 5 --"N/A: Denominator of the successor should not exceed the parameter m of the sequence"
   | l + denominator successor - m > numerator successor = -1 % 6 --"N/A: The quantity (l + denominator - m) should not exceed the numerator of the successor"
@@ -864,7 +864,7 @@ predecessorOfPairOfNeighborsInFBnm n m (successor, rightNeighborOfSuccessor) che
   -- If checkPair == True, then to check whether the input pair is indeed a pair of neighboring fractions in the sequence FBnm
   | n < 2 = -1 % 1 -- "N/A: Parameter n of the sequence should be > 1"
   | m < 1 || m >= n = -1 % 2 -- "N/A: Parameter m of the sequence should be between 0 (excluded) and n (excluded)"
-  | successor >= rightNeighborOfSuccessor = -1 % 3 -- "N/A We should have successor < rightNeighborOfSuccessor"
+  | successor >= rightNeighborOfSuccessor = -1 % 3 -- "N/A: We should have successor < rightNeighborOfSuccessor"
   | successor <= 0 % 1 || successor >= 1 % 1 = -1 % 4 --"N/A: successor should be between (0 % 1) (excluded) and (1 % 1) (excluded)"
   | denominator successor > n = -1 % 5 --"N/A: Denominator of the successor should not exceed n"
   | m + denominator successor - n > numerator successor ||
