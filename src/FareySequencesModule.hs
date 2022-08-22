@@ -10,7 +10,7 @@
 -- Farey Subsequence FB2mm ( in LaTeX: $\mathcal{F}(\mathbb{B}(2m),m)$ ), where m > 0;
 -- Farey Subsequence FBnm ( in LaTeX: $\mathcal{F}(\mathbb{B}(n),m)$ ), where n > 1, and 0 < m < n.
 --
--- In healthy situations, all of the exported functions below return NONNEGATIVE reduced fractions (h % k) such that (0 % 1) <= (h % k) <= (1 % 1).
+-- In healthy situations, all of the exported functions below return reduced fractions (h % k) such that (0 % 1) <= (h % k) <= (1 % 1).
 -- If you get a NEGATIVE fraction, it means that something went wrong,
 -- and the denominator of the resulting negative fraction has no computational meaning,
 -- since it just reports a reason of the problem---see the source code of the function you have used.
