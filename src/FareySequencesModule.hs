@@ -29,11 +29,10 @@
 
 {-# LANGUAGE MultiWayIf #-}
 {-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
-
 {-# HLINT ignore "Eta reduce" #-}
+
 module FareySequencesModule
-  ( module Data.List
-  , module Data.Maybe
+  ( module Data.Maybe
   , module GHC.Real
   , predecessorInFm
   , successorInFm
@@ -77,7 +76,7 @@ predecessorInFm :: Integer -> Rational -> Rational
 --    3 % 5
 predecessorInFm m successor
   | m < 1 = -1 % 1 -- "N/A: Order m of the sequence should be > 0"
-  | successor <= 0 % 1 || successor > 1 % 1 = -1 % 2 --"N/A: Successor should be between (0 % 1) (excluded) and (1 % 1) (included)"
+  | successor <= 0 % 1 || successor > 1 % 1 = -1 % 2 --"N/A: successor should be between (0 % 1) (excluded) and (1 % 1) (included)"
   | denominator successor > m = -1 % 3 --"N/A: Denominator of the successor should not exceed the order m of the sequence"
   | otherwise =
     if successor == 1 % 1
@@ -99,7 +98,7 @@ successorInFm :: Integer -> Rational -> Rational
 --    2 % 5
 successorInFm m predecessor
   | m < 1 = -1 % 1 -- "N/A: Order m of the sequence should be > 0"
-  | predecessor < 0 % 1 || predecessor >= 1 % 1 = -1 % 2 --"N/A: Predecessor should be between 0%1 (included) and 1%1 (excluded)"
+  | predecessor < 0 % 1 || predecessor >= 1 % 1 = -1 % 2 --"N/A: predecessor should be between 0%1 (included) and 1%1 (excluded)"
   | denominator predecessor > m = -1 % 3 --"N/A: Denominator of the predecessor should not exceed the order m of the sequence"
   | otherwise =
     if predecessor == 0 % 1
@@ -122,7 +121,7 @@ predecessorInFml :: Integer -> Integer -> Rational -> Rational
 predecessorInFml m l successor
   | m < 2 = -1 % 1 -- "N/A: Parameter m of the sequence should be > 1"
   | l <= 0 || l >= m = -1 % 2 --"N/A: Parameter l should be between 0 (excluded) and m (excluded)"
-  | successor <= 0 % 1 || successor > 1 % 1 = -1 % 3 --"N/A: Successor should be between (0 % 1) (excluded) and (1 % 1) (included)"
+  | successor <= 0 % 1 || successor > 1 % 1 = -1 % 3 --"N/A: successor should be between (0 % 1) (excluded) and (1 % 1) (included)"
   | denominator successor > m = -1 % 4 --"N/A: Denominator of the successor should not exceed the parameter m of the sequence"
   | l < numerator successor = -1 % 5 --"N/A: Numerator of the successor should be between 1 (included) and l (included)"
   | otherwise =
@@ -152,7 +151,7 @@ successorInFml :: Integer -> Integer -> Rational -> Rational
 successorInFml m l predecessor
   | m < 2 = -1 % 1 -- "N/A: Parameter m of the sequence should be > 1"
   | l <= 0 || l >= m = -1 % 2 --"N/A: Parameter l should be between 0 (excluded) and m (excluded)"
-  | predecessor < 0 % 1 || predecessor >= 1 % 1 = -1 % 3 --"N/A: Predecessor should be between 0%1 (included) and 1%1 (excluded)"
+  | predecessor < 0 % 1 || predecessor >= 1 % 1 = -1 % 3 --"N/A: predecessor should be between 0%1 (included) and 1%1 (excluded)"
   | denominator predecessor > m = -1 % 4 --"N/A: Denominator of the predecessor should not exceed the parameter m of the sequence"
   | l < numerator predecessor = -1 % 5 --"N/A: Numerator of the predecessor should be between 1 (included) and l (included)"
   | otherwise =
@@ -182,7 +181,7 @@ predecessorInGml :: Integer -> Integer -> Rational -> Rational
 predecessorInGml m l successor
   | m < 2 = -1 % 1 -- "N/A: Parameter m of the sequence should be > 1"
   | l <= 0 || l >= m = -1 % 2 --"N/A: Parameter l should be between 0 (excluded) and m (excluded)"
-  | successor <= 0 % 1 || successor > 1 % 1 = -1 % 3 --"N/A: Successor should be between (0 % 1) (excluded) and (1 % 1) (included)"
+  | successor <= 0 % 1 || successor > 1 % 1 = -1 % 3 --"N/A: successor should be between (0 % 1) (excluded) and (1 % 1) (included)"
   | denominator successor > m = -1 % 4 --"N/A: Denominator of the successor should not exceed the parameter m of the sequence"
   | l + denominator successor - m > numerator successor = -1 % 5 --"N/A: The quantity (l + denominator - m) should not exceed the numerator of the successor"
   | otherwise =
@@ -217,7 +216,7 @@ successorInGml :: Integer -> Integer -> Rational -> Rational
 successorInGml m l predecessor
   | m < 2 = -1 % 1 -- "N/A: Parameter m of the sequence should be > 1"
   | l <= 0 || l >= m = -1 % 2 --"N/A: Parameter l should be between 0 (excluded) and m (excluded)"
-  | predecessor < 0 % 1 || predecessor >= 1 % 1 = -1 % 3 --"N/A: Predecessor should be between (0 % 1) (included) and (1 % 1) (excluded)"
+  | predecessor < 0 % 1 || predecessor >= 1 % 1 = -1 % 3 --"N/A: predecessor should be between (0 % 1) (included) and (1 % 1) (excluded)"
   | denominator predecessor > m = -1 % 4 --"N/A: Denominator of the predecessor should not exceed the parameter m of the sequence"
   | l + denominator predecessor - m > numerator predecessor = -1 % 5 --"N/A: Denominator of the predecessor minus its numerator should not exceed (m - l)"
   | otherwise =
@@ -255,7 +254,7 @@ predecessorInFB2mm :: Integer -> Rational -> Rational
 --    1 % 3
 predecessorInFB2mm m successor
   | m < 1 = -1 % 1 -- "N/A: Parameter m of the sequence should be > 0"
-  | successor <= 0 % 1 || successor > 1 % 1 = -1 % 2 --"N/A: Successor should be between (0 % 1) (excluded) and (1 % 1) (included)"
+  | successor <= 0 % 1 || successor > 1 % 1 = -1 % 2 --"N/A: successor should be between (0 % 1) (excluded) and (1 % 1) (included)"
   | denominator successor > 2 * m = -1 % 3 --"N/A: Denominator of the successor should not exceed  (2 * m)"
   | denominator successor - m > numerator successor || numerator successor > m =
     -1 % 4 --"N/A: Numerator of the successor should be between (denominator - m) (included) and m (included)"
@@ -293,7 +292,7 @@ successorInFB2mm :: Integer -> Rational -> Rational
 --    2 % 3
 successorInFB2mm m predecessor
   | m < 1 = -1 % 1 -- "N/A: Parameter m of the sequence should be > 0"
-  | predecessor < 0 % 1 || predecessor >= 1 % 1 = -1 % 2 --"N/A: Predecessor should be between (0 % 1) (included) and (1 % 1) (excluded)"
+  | predecessor < 0 % 1 || predecessor >= 1 % 1 = -1 % 2 --"N/A: predecessor should be between (0 % 1) (included) and (1 % 1) (excluded)"
   | denominator predecessor > 2 * m = -1 % 3 --"N/A: Denominator of the predecessor should not exceed (2 * m)"
   | denominator predecessor - m > numerator predecessor ||
       numerator predecessor > m =
@@ -335,7 +334,7 @@ predecessorInFBnm n m successor
   | n == 2 * m = predecessorInFB2mm m successor
   | n < 2 = -1 % 1 -- "N/A: Parameter n of the sequence should be > 1"
   | m < 1 || m >= n = -1 % 2 -- "N/A: Parameter m of the sequence should be between 0 (excluded) and n (excluded)"
-  | successor <= 0 % 1 || successor > 1 % 1 = -1 % 3 --"N/A: Successor should be between (0 % 1) (excluded) and (1 % 1) (included)"
+  | successor <= 0 % 1 || successor > 1 % 1 = -1 % 3 --"N/A: successor should be between (0 % 1) (excluded) and (1 % 1) (included)"
   | denominator successor > n = -1 % 4 --"N/A: Denominator of the successor should not exceed n"
   | m + denominator successor - n > numerator successor ||
       numerator successor > m =
@@ -396,7 +395,7 @@ successorInFBnm n m predecessor
   | n == 2 * m = successorInFB2mm m predecessor
   | n < 2 = -1 % 1 -- "N/A: Parameter n of the sequence should be > 1"
   | m < 1 || m >= n = -1 % 2 -- "N/A: Parameter m of the sequence should be between 0 (excluded) and n (excluded)"
-  | predecessor < 0 % 1 || predecessor >= 1 % 1 = -1 % 3 --"N/A: Predecessor should be between (0 % 1) (included) and (1 % 1) (excluded)"
+  | predecessor < 0 % 1 || predecessor >= 1 % 1 = -1 % 3 --"N/A: predecessor should be between (0 % 1) (included) and (1 % 1) (excluded)"
   | denominator predecessor > n = -1 % 4 --"N/A: Denominator of the predecessor should not exceed `n' "
   | m + denominator predecessor - n > numerator predecessor ||
       numerator predecessor > m =
@@ -654,7 +653,7 @@ successorOfPairOfNeighborsInFm m (leftNeighborOfPredecessor, predecessor) checkP
   -- If checkPair == True, then to check whether the input pair is indeed a pair of neighboring fractions in the sequence Fm
   | m < 1 = -1 % 1 -- "N/A: Order m of the sequence should be > 0"
   | leftNeighborOfPredecessor >= predecessor = -1 % 2 -- "N/A: We should have leftNeighborOfPredecessor < predecessor"
-  | predecessor <= 0 % 1 || predecessor >= 1 % 1 = -1 % 3 --"N/A: Predecessor should be between (0 % 1) (excluded) and (1 % 1) (excluded)"
+  | predecessor <= 0 % 1 || predecessor >= 1 % 1 = -1 % 3 --"N/A: predecessor should be between (0 % 1) (excluded) and (1 % 1) (excluded)"
   | denominator predecessor > m = -1 % 4 --"N/A: Denominator of the predecessor should not exceed the order m of the sequence"
   | leftNeighborOfPredecessor < 0 % 1 = -1 % 5 --"N/A: leftNeighborOfPredecessor should be between (0 % 1) (included) and predecessor (excluded)"
   | denominator leftNeighborOfPredecessor > m = -1 % 6 --"N/A: Denominator of the leftNeighborOfPredecessor should not exceed the order m of the sequence"
@@ -685,7 +684,7 @@ predecessorOfPairOfNeighborsInFml m l (successor, rightNeighborOfSuccessor) chec
   | m < 2 = -1 % 1 -- "N/A: Parameter m of the sequence should be > 1"
   | l <= 0 || l >= m = -1 % 2 --"N/A: Parameter l should be between 0 (excluded) and m (excluded)"
   | successor >= rightNeighborOfSuccessor = -1 % 3 -- "N/A: We should have successor < rightNeighborOfSuccessor"
-  | successor <= 0 % 1 || successor > 1 % 1 = -1 % 4 --"N/A: Successor should be between (0 % 1) (excluded) and (1 % 1) (included)"
+  | successor <= 0 % 1 || successor > 1 % 1 = -1 % 4 --"N/A: successor should be between (0 % 1) (excluded) and (1 % 1) (included)"
   | denominator successor > m = -1 % 5 --"N/A: Denominator of the successor should not exceed the parameter m of the sequence"
   | l < numerator successor = -1 % 6 --"N/A: Numerator of the successor should be between 1 (included) and l (included)"
   | rightNeighborOfSuccessor > 1 % 1 = -1 % 7 --"N/A: rightNeighborOfSuccessor should be between successor (excluded) and (1 % 1) (included)"
@@ -728,7 +727,7 @@ successorOfPairOfNeighborsInFml m l (leftNeighborOfPredecessor, predecessor) che
   | m < 2 = -1 % 1 -- "N/A: Parameter m of the sequence should be > 1"
   | l <= 0 || l >= m = -1 % 2 --"N/A: Parameter l should be between 0 (excluded) and m (excluded)"
   | leftNeighborOfPredecessor >= predecessor = -1 % 3 -- "N/A: We should have leftNeighborOfPredecessor < predecessor"
-  | predecessor <= 0 % 1 || predecessor >= 1 % 1 = -1 % 4 --"N/A: Predecessor should be between (0 % 1) (excluded) and (1 % 1) (excluded)"
+  | predecessor <= 0 % 1 || predecessor >= 1 % 1 = -1 % 4 --"N/A: predecessor should be between (0 % 1) (excluded) and (1 % 1) (excluded)"
   | denominator predecessor > m = -1 % 5 --"N/A: Denominator of the predecessor should not exceed the parameter m of the sequence"
   | l < numerator predecessor = -1 % 6 --"N/A: Numerator of the predecessor should be between 1 (included) and l (included)"
   | leftNeighborOfPredecessor < 0 % 1 = -1 % 7 --"N/A: leftNeighborOfPredecessor should be between (0 % 1) (included) and predecessor (excluded)"
@@ -818,7 +817,7 @@ successorOfPairOfNeighborsInGml m l (leftNeighborOfPredecessor, predecessor) che
   | m < 2 = -1 % 1 -- "N/A: Parameter m of the sequence should be > 1"
   | l <= 0 || l >= m = -1 % 2 --"N/A: Parameter l should be between 0 (excluded) and m (excluded)"
   | leftNeighborOfPredecessor >= predecessor = -1 % 3 -- "N/A: We should have leftNeighborOfPredecessor < predecessor"
-  | predecessor <= 0 % 1 || predecessor >= 1 % 1 = -1 % 4 --"N/A: Predecessor should be between (0 % 1) (excluded) and (1 % 1) (excluded)"
+  | predecessor <= 0 % 1 || predecessor >= 1 % 1 = -1 % 4 --"N/A: predecessor should be between (0 % 1) (excluded) and (1 % 1) (excluded)"
   | denominator predecessor > m = -1 % 5 --"N/A: Denominator of the predecessor should not exceed the parameter m of the sequence"
   | l + denominator predecessor - m > numerator predecessor = -1 % 6 --"N/A: The quantity (l + denominator - m) should not exceed the numerator of the predecessor"
   | leftNeighborOfPredecessor < 0 % 1 = -1 % 7 --"N/A: leftNeighborOfPredecessor should be between (0 % 1) (included) and predecessor (excluded)"
@@ -924,7 +923,7 @@ successorOfPairOfNeighborsInFBnm n m (leftNeighborOfPredecessor, predecessor) ch
   | n < 2 = -1 % 1 -- "N/A: Parameter n of the sequence should be > 1"
   | m < 1 || m >= n = -1 % 2 -- "N/A: Parameter m of the sequence should be between 0 (excluded) and n (excluded)"
   | leftNeighborOfPredecessor >= predecessor = -1 % 3 -- "N/A: We should have leftNeighborOfPredecessor < predecessor"
-  | predecessor >= 1 % 1 || predecessor <= 0 % 1 = -1 % 4 --"N/A: Predecessor should be between (0 % 1) (excluded) and (1 % 1) (excluded)"
+  | predecessor >= 1 % 1 || predecessor <= 0 % 1 = -1 % 4 --"N/A: predecessor should be between (0 % 1) (excluded) and (1 % 1) (excluded)"
   | denominator predecessor > n = -1 % 5 --"N/A: Denominator of the predecessor should not exceed n"
   | m + denominator predecessor - n > numerator predecessor ||
       numerator predecessor > m =
