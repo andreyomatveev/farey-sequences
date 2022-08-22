@@ -825,7 +825,7 @@ successorOfPairOfNeighborsInGml m l (leftNeighborOfPredecessor, predecessor) che
   | denominator leftNeighborOfPredecessor > m = -1 % 8 --"N/A: Denominator of the leftNeighborOfPredecessor should not exceed n"
   | l + denominator leftNeighborOfPredecessor - m >
       numerator leftNeighborOfPredecessor =
-    -1 % 9 --"N/A: The quantity (l + denominator - m) should not exceed the numerator of the predecessor"
+    -1 % 9 --"N/A: The quantity (l + denominator - m) should not exceed the numerator of the leftNeighborOfPredecessor"
   | not checkPair ||
       checkPair && predecessor == successorInGml m l leftNeighborOfPredecessor =
     if denominator predecessor * l - numerator predecessor * m >= 1
