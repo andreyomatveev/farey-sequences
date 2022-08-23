@@ -1,4 +1,4 @@
-# Farey (Sub)sequences: a Closure namespace and a Haskell module #
+# Farey (Sub)sequences: a Clojure namespace and a Haskell module #
 A Closure namespace `fareysequences.clj` and a Haskell module `FareySequencesModule.hs` exporting a dozen of functions coded after several selected formulas presented 
 in the monograph [A.O. Matveev, Farey Sequences: Duality and Maps Between Subsequences](https://doi.org/10.1515/9783110547665), Berlin, Boston: De Gruyter, 2017. 
 
