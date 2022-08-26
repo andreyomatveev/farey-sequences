@@ -364,7 +364,7 @@ predecessorInFBnm n m successor
                                   successor)
                                successor))
            else (if (successor > 1 % 2) ||
-                    ((numerator successor * n - denominator successor * m) >= 1)
+                    (numerator successor * n - denominator successor * m >= 1)
                    then getNumeratorAndReturnPredecessor
                           (findNumeratorOfPredecessor
                              (m - numerator successor + 1, m)
