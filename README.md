@@ -1,5 +1,5 @@
 # Farey (Sub)sequences: A Clojure namespace, and Haskell and Python modules #
-A Clojure namespace `fareysequences.clj`, and a Haskell module `FareySequencesModule.hs`, and a Python module `fareysequences.py`, exporting a dozen of functions coded after several selected formulas presented in the monograph [A.O. Matveev, Farey Sequences: Duality and Maps Between Subsequences](https://doi.org/10.1515/9783110547665), Berlin, Boston: De Gruyter, 2017. 
+A Clojure `fareysequences.clj` namespace, and a Haskell `FareySequencesModule.hs` module, and a Python `fareysequences.py` module, exporting a dozen of functions coded after several selected formulas presented in the monograph [A.O. Matveev, Farey Sequences: Duality and Maps Between Subsequences](https://doi.org/10.1515/9783110547665), Berlin, Boston: De Gruyter, 2017. 
 
 ## Our Dramatis Personae ##
   (See Table 1.1 of the monograph):
