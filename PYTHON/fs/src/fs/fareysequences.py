@@ -11,7 +11,7 @@
 # Farey Subsequence FBnm ( in LaTeX: $\mathcal{F}(\mathbb{B}(n),m)$ ), where n > 1, and 0 < m < n.
 #
 # In healthy situations, all of the exported functions below return reduced fractions Fraction(h, k)
-# such that Frcation(0, 1) <= Fraction(h, k) <= Fraction(1, 1).
+# such that Fraction(0, 1) <= Fraction(h, k) <= Fraction(1, 1).
 # If you get a NEGATIVE fraction, it means that something went wrong,
 # and the denominator of the resulting negative fraction has no computational meaning,
 # since it just reports a reason of the problem---see the source code of the function you have used.
@@ -66,7 +66,7 @@ def predecessor_in_Fm(m: int, successor: Fraction) -> Fraction:
             ref_point = ceil((successor.numerator * m) /
                              successor.denominator)
             return __get_numerator_and_return_predecessor(
-                __find_numerator_of_predecessor((ref_point - successor.numerator, ref_point - 1), successor),  successor)
+                __find_numerator_of_predecessor((ref_point - successor.numerator, ref_point - 1), successor), successor)
 
 
 def successor_in_Fm(m: int, predecessor: Fraction) -> Fraction:
@@ -90,7 +90,9 @@ def successor_in_Fm(m: int, predecessor: Fraction) -> Fraction:
             ref_point = ceil((predecessor.numerator * m + 2) /
                              predecessor.denominator)
             return __get_numerator_and_return_successor(
-                __find_numerator_of_successor((ref_point - predecessor.numerator, ref_point - 1), predecessor),  predecessor)
+                __find_numerator_of_successor(
+                    (ref_point - predecessor.numerator, ref_point - 1), predecessor),
+                predecessor)
 
 
 def predecessor_in_Fml(m: int, l: int, successor: Fraction) -> Fraction:
@@ -117,10 +119,12 @@ def predecessor_in_Fml(m: int, l: int, successor: Fraction) -> Fraction:
         if successor == Fraction(1, 1):
             return __predecessor_of_one_first_in_Fml(l)
         elif successor.numerator * m - successor.denominator * l >= 1:
-            return __get_numerator_and_return_predecessor(__find_numerator_of_predecessor((l - successor.numerator + 1, l), successor), successor)
+            return __get_numerator_and_return_predecessor(
+                __find_numerator_of_predecessor((l - successor.numerator + 1, l), successor), successor)
         else:
             ref_point = ceil((successor.numerator * m) / successor.denominator)
-            return __get_numerator_and_return_predecessor(__find_numerator_of_predecessor((ref_point - successor.numerator, ref_point - 1), successor),  successor)
+            return __get_numerator_and_return_predecessor(
+                __find_numerator_of_predecessor((ref_point - successor.numerator, ref_point - 1), successor), successor)
 
 
 def successor_in_Fml(m: int, l: int, predecessor: Fraction) -> Fraction:
@@ -149,9 +153,13 @@ def successor_in_Fml(m: int, l: int, predecessor: Fraction) -> Fraction:
         elif predecessor.denominator * l - predecessor.numerator * m >= 1:
             ref_point = ceil((predecessor.numerator * m + 2) /
                              predecessor.denominator)
-            return __get_numerator_and_return_successor(__find_numerator_of_successor((ref_point - predecessor.numerator, ref_point - 1), predecessor),  predecessor)
+            return __get_numerator_and_return_successor(
+                __find_numerator_of_successor(
+                    (ref_point - predecessor.numerator, ref_point - 1), predecessor),
+                predecessor)
         else:
-            return __get_numerator_and_return_successor(__find_numerator_of_successor((l - predecessor.numerator + 1, l), predecessor), predecessor)
+            return __get_numerator_and_return_successor(
+                __find_numerator_of_successor((l - predecessor.numerator + 1, l), predecessor), predecessor)
 
 
 def predecessor_in_Gml(m: int, l: int, successor: Fraction) -> Fraction:
@@ -181,11 +189,17 @@ def predecessor_in_Gml(m: int, l: int, successor: Fraction) -> Fraction:
             if successor.numerator * m - successor.denominator * l >= 1:
                 ref_point = ceil((successor.numerator * m) /
                                  successor.denominator)
-                return __get_numerator_and_return_predecessor(__find_numerator_of_predecessor((ref_point - successor.numerator, ref_point - 1), successor),  successor)
+                return __get_numerator_and_return_predecessor(
+                    __find_numerator_of_predecessor(
+                        (ref_point - successor.numerator, ref_point - 1), successor),
+                    successor)
             else:
                 ref_point = ceil(
                     (successor.numerator * (m - l)) / (successor.denominator - successor.numerator))
-                return __get_numerator_and_return_predecessor(__find_numerator_of_predecessor((ref_point - successor.numerator, ref_point - 1), successor),  successor)
+                return __get_numerator_and_return_predecessor(
+                    __find_numerator_of_predecessor(
+                        (ref_point - successor.numerator, ref_point - 1), successor),
+                    successor)
 
 
 def successor_in_Gml(m: int, l: int, predecessor: Fraction) -> Fraction:
@@ -210,15 +224,21 @@ def successor_in_Gml(m: int, l: int, predecessor: Fraction) -> Fraction:
         return Fraction(1, -5)
     else:
         if predecessor == Fraction(0, 1):
-            return __successor_of_zero_first_in_Gml(m)
+            return __successor_of_zero_first_in_Gml(m, l)
         elif predecessor.denominator * l - predecessor.numerator * m >= 1:
             ref_point = ceil((predecessor.numerator * (m - l) + 2) /
                              (predecessor.denominator - predecessor.numerator))
-            return __get_numerator_and_return_successor(__find_numerator_of_successor((ref_point - predecessor.numerator, ref_point - 1), predecessor),  predecessor)
+            return __get_numerator_and_return_successor(
+                __find_numerator_of_successor(
+                    (ref_point - predecessor.numerator, ref_point - 1), predecessor),
+                predecessor)
         else:
             ref_point = ceil((predecessor.numerator * m + 2) /
                              predecessor.denominator)
-            return __get_numerator_and_return_successor(__find_numerator_of_successor((ref_point - predecessor.numerator, ref_point - 1), predecessor),  predecessor)
+            return __get_numerator_and_return_successor(
+                __find_numerator_of_successor(
+                    (ref_point - predecessor.numerator, ref_point - 1), predecessor),
+                predecessor)
 
 
 def __predecessor_in_FB2mm(m: int, successor: Fraction) -> Fraction:
@@ -244,17 +264,25 @@ def __predecessor_in_FB2mm(m: int, successor: Fraction) -> Fraction:
         return Fraction(1, -4)
     else:
         match successor:
-            case Fraction(numerator=1, denominator=1): return __predecessor_of_one_first_in_FB2mm(m)
-            case Fraction(numerator=2, denominator=3): return __predecessor_of_two_thirds_in_FB2mm(m)
-            case Fraction(numerator=1, denominator=2): return __predecessor_of_one_second_in_FB2mm(m)
-            case Fraction(numerator=1, denominator=3): return __predecessor_of_one_third_in_FB2mm(m)
+            case Fraction(numerator=1, denominator=1):
+                return __predecessor_of_one_first_in_FB2mm(m)
+            case Fraction(numerator=2, denominator=3):
+                return __predecessor_of_two_thirds_in_FB2mm(m)
+            case Fraction(numerator=1, denominator=2):
+                return __predecessor_of_one_second_in_FB2mm(m)
+            case Fraction(numerator=1, denominator=3):
+                return __predecessor_of_one_third_in_FB2mm(m)
             case _:
-                if (successor > Fraction(1, 2)):
-                    return __get_numerator_and_return_predecessor(__find_numerator_of_predecessor((m - successor.numerator + 1, m), successor), successor)
+                if successor > Fraction(1, 2):
+                    return __get_numerator_and_return_predecessor(
+                        __find_numerator_of_predecessor((m - successor.numerator + 1, m), successor), successor)
                 else:
                     ref_point = ceil((successor.numerator * m) /
                                      (successor.denominator - successor.numerator))
-                    return __get_numerator_and_return_predecessor(__find_numerator_of_predecessor((ref_point - successor.numerator, ref_point - 1), successor),  successor)
+                    return __get_numerator_and_return_predecessor(
+                        __find_numerator_of_predecessor(
+                            (ref_point - successor.numerator, ref_point - 1), successor),
+                        successor)
 
 
 def __successor_in_FB2mm(m: int, predecessor: Fraction) -> Fraction:
@@ -280,17 +308,25 @@ def __successor_in_FB2mm(m: int, predecessor: Fraction) -> Fraction:
         return Fraction(1, -4)
     else:
         match predecessor:
-            case Fraction(numerator=0, denominator=1): return __successor_of_zero_first_in_FB2mm(m)
-            case Fraction(numerator=1, denominator=3): return __successor_of_one_third_in_FB2mm(m)
-            case Fraction(numerator=1, denominator=2): return __successor_of_one_second_in_FB2mm(m)
-            case Fraction(numerator=2, denominator=3): return __successor_of_two_thirds_in_FB2mm(m)
+            case Fraction(numerator=0, denominator=1):
+                return __successor_of_zero_first_in_FB2mm(m)
+            case Fraction(numerator=1, denominator=3):
+                return __successor_of_one_third_in_FB2mm(m)
+            case Fraction(numerator=1, denominator=2):
+                return __successor_of_one_second_in_FB2mm(m)
+            case Fraction(numerator=2, denominator=3):
+                return __successor_of_two_thirds_in_FB2mm(m)
             case _:
-                if (predecessor < Fraction(1, 2)):
+                if predecessor < Fraction(1, 2):
                     ref_point = ceil((predecessor.numerator * m + 2) /
                                      (predecessor.denominator - predecessor.numerator))
-                    return __get_numerator_and_return_successor(__find_numerator_of_successor((ref_point - predecessor.numerator, ref_point - 1), predecessor),  predecessor)
+                    return __get_numerator_and_return_successor(
+                        __find_numerator_of_successor(
+                            (ref_point - predecessor.numerator, ref_point - 1), predecessor),
+                        predecessor)
                 else:
-                    return __get_numerator_and_return_successor(__find_numerator_of_successor((m - predecessor.numerator + 1, m), predecessor), predecessor)
+                    return __get_numerator_and_return_successor(
+                        __find_numerator_of_successor((m - predecessor.numerator + 1, m), predecessor), predecessor)
 
 
 def predecessor_in_FBnm(n: int, m: int, successor: Fraction) -> Fraction:
@@ -322,25 +358,35 @@ def predecessor_in_FBnm(n: int, m: int, successor: Fraction) -> Fraction:
         return Fraction(1, -5)
     else:
         match successor:
-            case Fraction(numerator=1, denominator=1): return __predecessor_of_one_first_in_FBnm(m)
-            case Fraction(numerator=2, denominator=3): return __predecessor_of_two_thirds_in_FBnm(n, m)
-            case Fraction(numerator=1, denominator=2): return __predecessor_of_one_second_in_FBnm(n, m)
-            case Fraction(numerator=1, denominator=3): return __predecessor_of_one_third_in_FBnm(n, m)
+            case Fraction(numerator=1, denominator=1):
+                return __predecessor_of_one_first_in_FBnm(m)
+            case Fraction(numerator=2, denominator=3):
+                return __predecessor_of_two_thirds_in_FBnm(n, m)
+            case Fraction(numerator=1, denominator=2):
+                return __predecessor_of_one_second_in_FBnm(n, m)
+            case Fraction(numerator=1, denominator=3):
+                return __predecessor_of_one_third_in_FBnm(n, m)
             case _:
                 if n < 2 * m:
                     if (successor > Fraction(1, 2)) and (successor.numerator * n - successor.denominator * m >= 1):
-                        return __get_numerator_and_return_predecessor(__find_numerator_of_predecessor((m - successor.numerator + 1, m), successor), successor)
+                        return __get_numerator_and_return_predecessor(
+                            __find_numerator_of_predecessor((m - successor.numerator + 1, m), successor), successor)
                     else:
                         ref_point = ceil(
                             successor.numerator * (n - m) / (successor.denominator - successor.numerator))
-                        return __get_numerator_and_return_predecessor(__find_numerator_of_predecessor((ref_point - successor.numerator, ref_point - 1), successor), successor)
+                        return __get_numerator_and_return_predecessor(
+                            __find_numerator_of_predecessor((ref_point - successor.numerator, ref_point - 1),
+                                                            successor), successor)
                 else:
                     if (successor > Fraction(1, 2)) or (successor.numerator * n - successor.denominator * m >= 1):
-                        return __get_numerator_and_return_predecessor(__find_numerator_of_predecessor((m - successor.numerator + 1, m), successor), successor)
+                        return __get_numerator_and_return_predecessor(
+                            __find_numerator_of_predecessor((m - successor.numerator + 1, m), successor), successor)
                     else:
                         ref_point = ceil(
                             successor.numerator * (n - m) / (successor.denominator - successor.numerator))
-                        return __get_numerator_and_return_predecessor(__find_numerator_of_predecessor((ref_point - successor.numerator, ref_point - 1), successor), successor)
+                        return __get_numerator_and_return_predecessor(
+                            __find_numerator_of_predecessor((ref_point - successor.numerator, ref_point - 1),
+                                                            successor), successor)
 
 
 def successor_in_FBnm(n: int, m: int, predecessor: Fraction) -> Fraction:
@@ -372,25 +418,36 @@ def successor_in_FBnm(n: int, m: int, predecessor: Fraction) -> Fraction:
         return Fraction(1, -5)
     else:
         match predecessor:
-            case Fraction(numerator=0, denominator=1): return __successor_of_zero_first_in_FBnm(n, m)
-            case Fraction(numerator=1, denominator=3): return __successor_of_one_third_in_FBnm(n, m)
-            case Fraction(numerator=1, denominator=2): return __successor_of_one_second_in_FBnm(n, m)
-            case Fraction(numerator=2, denominator=3): return __successor_of_two_thirds_in_FBnm(n, m)
+            case Fraction(numerator=0, denominator=1):
+                return __successor_of_zero_first_in_FBnm(n, m)
+            case Fraction(numerator=1, denominator=3):
+                return __successor_of_one_third_in_FBnm(n, m)
+            case Fraction(numerator=1, denominator=2):
+                return __successor_of_one_second_in_FBnm(n, m)
+            case Fraction(numerator=2, denominator=3):
+                return __successor_of_two_thirds_in_FBnm(n, m)
             case _:
                 if n < 2 * m:
-                    if (predecessor > Fraction(1, 2)) and (predecessor.denominator * m - predecessor.numerator * n <= 1):
-                        return __get_numerator_and_return_successor(__find_numerator_of_successor((m - predecessor.numerator + 1, m), predecessor), predecessor)
+                    if (predecessor > Fraction(1, 2)) and (
+                            predecessor.denominator * m - predecessor.numerator * n <= 1):
+                        return __get_numerator_and_return_successor(
+                            __find_numerator_of_successor((m - predecessor.numerator + 1, m), predecessor), predecessor)
                     else:
                         ref_point = ceil((predecessor.numerator * (n - m) + 2) /
                                          (predecessor.denominator - predecessor.numerator))
-                        return __get_numerator_and_return_successor(__find_numerator_of_successor((ref_point - predecessor.numerator, ref_point - 1), predecessor), predecessor)
+                        return __get_numerator_and_return_successor(
+                            __find_numerator_of_successor((ref_point - predecessor.numerator, ref_point - 1),
+                                                          predecessor), predecessor)
                 else:
                     if (predecessor > Fraction(1, 2)) or (predecessor.denominator * m - predecessor.numerator * n <= 1):
-                        return __get_numerator_and_return_successor(__find_numerator_of_successor((m - predecessor.numerator + 1, m), predecessor), predecessor)
+                        return __get_numerator_and_return_successor(
+                            __find_numerator_of_successor((m - predecessor.numerator + 1, m), predecessor), predecessor)
                     else:
                         ref_point = ceil((predecessor.numerator * (n - m) + 2) /
                                          (predecessor.denominator - predecessor.numerator))
-                        return __get_numerator_and_return_successor(__find_numerator_of_successor((ref_point - predecessor.numerator, ref_point - 1), predecessor), predecessor)
+                        return __get_numerator_and_return_successor(
+                            __find_numerator_of_successor((ref_point - predecessor.numerator, ref_point - 1),
+                                                          predecessor), predecessor)
 
 
 def __get_numerator_and_return_predecessor(a: int, successor: Fraction) -> Fraction:
@@ -403,14 +460,12 @@ def __get_numerator_and_return_successor(a: int, predecessor: Fraction) -> Fract
 
 def __find_numerator_of_predecessor(search_interval: Tuple(int, int), successor: Fraction) -> int:
     # Here we follow a suggestion found at https://code-maven.com/python-find-first-element-in-list-matching-condition
-    return next(filter(lambda x: (successor.denominator * x + 1) % successor.numerator
-                                 == 0, range(search_interval[0], search_interval[1] + 1)))
+    return next(filter(lambda x: (successor.denominator * x + 1) % successor.numerator == 0, range(search_interval[0], search_interval[1] + 1)))
 
 
 def __find_numerator_of_successor(search_interval: Tuple(int, int), predecessor: Fraction) -> int:
     # Here we follow a suggestion found at https://code-maven.com/python-find-first-element-in-list-matching-condition
-    return next(filter(lambda x: (predecessor.denominator * x - 1) % predecessor.numerator
-                                 == 0, range(search_interval[0], search_interval[1] + 1)))
+    return next(filter(lambda x: (predecessor.denominator * x - 1) % predecessor.numerator == 0, range(search_interval[0], search_interval[1] + 1)))
 
 
 def __predecessor_of_one_first_in_Fm(m: int) -> Fraction:
@@ -449,7 +504,7 @@ def __predecessor_of_one_first_in_FB2mm(m: int) -> Fraction:
 
 def __predecessor_of_two_thirds_in_FB2mm(m: int) -> Fraction:
     # See Remark 2.25 and Table 2.8 of the monograph
-    if (m % 2 == 0):
+    if m % 2 == 0:
         return Fraction((m - 1), ((3 * m - 2) // 2))
     else:
         return Fraction(m, (3 * m + 1) // 2)
@@ -462,7 +517,7 @@ def __predecessor_of_one_second_in_FB2mm(m: int) -> Fraction:
 
 def __predecessor_of_one_third_in_FB2mm(m: int) -> Fraction:
     # See Remark 2.24 and Table 2.7 of the monograph
-    if (m % 2 == 0):
+    if m % 2 == 0:
         return Fraction((m - 2) // 2, ((3 * m - 4) // 2))
     else:
         return Fraction((m - 1) // 2, ((3 * m - 1) // 2))
@@ -475,8 +530,8 @@ def __successor_of_zero_first_in_FB2mm(m: int) -> Fraction:
 
 def __successor_of_one_third_in_FB2mm(m: int) -> Fraction:
     # See Remark 2.24 and Table 2.7 of the monograph
-    if (m % 2 == 0):
-        return Fraction(m // 2,  (3 * m - 2) // 2)
+    if m % 2 == 0:
+        return Fraction(m // 2, (3 * m - 2) // 2)
     else:
         return Fraction((m + 1) // 2, (3 * m + 1) // 2)
 
@@ -488,7 +543,7 @@ def __successor_of_one_second_in_FB2mm(m: int) -> Fraction:
 
 def __successor_of_two_thirds_in_FB2mm(m: int) -> Fraction:
     # See Remark 2.25 and Table 2.8 of the monograph
-    if (m % 2 == 0):
+    if m % 2 == 0:
         return Fraction(m - 1, (3 * m - 4) // 2)
     else:
         return Fraction(m, (3 * m - 1) // 2)
@@ -501,16 +556,16 @@ def __predecessor_of_one_first_in_FBnm(m: int) -> Fraction:
 
 def __predecessor_of_two_thirds_in_FBnm(n: int, m: int) -> Fraction:
     # See CORRECTED Remark 2.43(i) and Remark 2.43(ii) and CORRECTED Table 2.8 of the monograph
-    if (n < 2 * m):
-        if (2 * n - 3 * m >= 1):
-            if (m % 2 == 0):
+    if n < 2 * m:
+        if 2 * n - 3 * m >= 1:
+            if m % 2 == 0:
                 return Fraction(m - 1, (3 * m - 2) // 2)
             else:
                 return Fraction(m, (3 * m + 1) // 2)
         else:
             return Fraction(2 * (n - m) - 1, 3 * (n - m) - 1)
     else:
-        if (m % 2 == 0):
+        if m % 2 == 0:
             return Fraction(m - 1, (3 * m - 2) // 2)
         else:
             return Fraction(m, (3 * m + 1) // 2)
@@ -518,7 +573,7 @@ def __predecessor_of_two_thirds_in_FBnm(n: int, m: int) -> Fraction:
 
 def __predecessor_of_one_second_in_FBnm(n: int, m: int) -> Fraction:
     # See Remark 2.17 and Table 2.5 of the monograph
-    if (n < 2 * m):
+    if n < 2 * m:
         return Fraction(n - m - 1, 2 * (n - m) - 1)
     else:
         return Fraction(m, 2 * m + 1)
@@ -583,8 +638,9 @@ def __successor_of_two_thirds_in_FBnm(n: int, m: int) -> Fraction:
         return Fraction(m, (3 * m - 1) // 2)
 
 
-def predecessor_of_pair_of_neighbors_in_Fm(m: int, successor: Fraction, right_neighbor_of_successor: Fraction, check_pair: bool) -> Fraction:
-    # If ckeck_pair == True, then to check whether the input pair is indeed a pair of neighboring fractions in the sequence Fm
+def predecessor_of_pair_of_neighbors_in_Fm(m: int, successor: Fraction, right_neighbor_of_successor: Fraction,
+                                           check_pair: bool) -> Fraction:
+    # If check_pair == True, then to check whether the input pair is indeed a pair of neighboring fractions in the sequence Fm
     # See Proposition 1.25 and Table 1.6 of the monograph. Call for instance:
     #    >>> predecessor_of_pair_of_neighbors_in_Fm(6, Fraction(1, 3),  Fraction(2, 5), True)
     # to get the result:
@@ -622,8 +678,9 @@ def predecessor_of_pair_of_neighbors_in_Fm(m: int, successor: Fraction, right_ne
             return Fraction(1, -7)
 
 
-def successor_of_pair_of_neighbors_in_Fm(m: int, left_neighbor_of_predecessor: Fraction, predecessor: Fraction, check_pair: bool) -> Fraction:
-    # If ckeck_pair == True, then to check whether the input pair is indeed a pair of neighboring fractions in the sequence Fm
+def successor_of_pair_of_neighbors_in_Fm(m: int, left_neighbor_of_predecessor: Fraction, predecessor: Fraction,
+                                         check_pair: bool) -> Fraction:
+    # If check_pair == True, then to check whether the input pair is indeed a pair of neighboring fractions in the sequence Fm
     # See Proposition 1.25 and Table 1.6 of the monograph. Call for instance:
     #    >>> successor_of_pair_of_neighbors_in_Fm(6, Fraction(3, 5),  Fraction(2, 3), True)
     # to get the result:
@@ -661,8 +718,9 @@ def successor_of_pair_of_neighbors_in_Fm(m: int, left_neighbor_of_predecessor: F
             return Fraction(1, -7)
 
 
-def predecessor_of_pair_of_neighbors_in_Fml(m: int, l: int, successor: Fraction, right_neighbor_of_successor: Fraction, check_pair: bool) -> Fraction:
-    # If ckeck_pair == True, then to check whether the input pair is indeed a pair of neighboring fractions in the sequence Fml
+def predecessor_of_pair_of_neighbors_in_Fml(m: int, l: int, successor: Fraction, right_neighbor_of_successor: Fraction,
+                                            check_pair: bool) -> Fraction:
+    # If check_pair == True, then to check whether the input pair is indeed a pair of neighboring fractions in the sequence Fml
     # See Proposition 1.26 (ii) (a) and Table 1.6 of the monograph. Call for instance:
     #    >>> predecessor_of_pair_of_neighbors_in_Fml(6, 4, Fraction(4, 5),  Fraction(1, 1), True)
     # to get the result:
@@ -715,7 +773,8 @@ def predecessor_of_pair_of_neighbors_in_Fml(m: int, l: int, successor: Fraction,
             return Fraction(1, -10)
 
 
-def successor_of_pair_of_neighbors_in_Fml(m: int, l: int, left_neighbor_of_predecessor: Fraction, predecessor: Fraction, check_pair: bool) -> Fraction:
+def successor_of_pair_of_neighbors_in_Fml(m: int, l: int, left_neighbor_of_predecessor: Fraction, predecessor: Fraction,
+                                          check_pair: bool) -> Fraction:
     # If check_pair == True, then to check whether the input pair is indeed a pair of neighboring fractions in the sequence Fml
     # See Proposition 1.26 (ii) (a) and Table 1.6 of the monograph. Call for instance:
     #    >>> successor_of_pair_of_neighbors_in_Fml(6, 4, Fraction(3, 4),  Fraction(4, 5), True)
@@ -769,7 +828,8 @@ def successor_of_pair_of_neighbors_in_Fml(m: int, l: int, left_neighbor_of_prede
             return Fraction(1, -10)
 
 
-def predecessor_of_pair_of_neighbors_in_Gml(m: int, l: int, successor: Fraction, right_neighbor_of_successor: Fraction, check_pair: bool) -> Fraction:
+def predecessor_of_pair_of_neighbors_in_Gml(m: int, l: int, successor: Fraction, right_neighbor_of_successor: Fraction,
+                                            check_pair: bool) -> Fraction:
     # If ckeck_pair == True, then to check whether the input pair is indeed a pair of neighboring fractions in the sequence Gml
     # See Proposition 1.27 (ii) (a) and Table 1.6 of the monograph. Call for instance:
     #    >>> predecessor_of_pair_of_neighbors_in_Gml(6, 4, Fraction(1, 2),  Fraction(3, 5), True)
@@ -815,7 +875,8 @@ def predecessor_of_pair_of_neighbors_in_Gml(m: int, l: int, successor: Fraction,
                                 farey_index * successor.denominator - right_neighbor_of_successor.denominator)
             else:
                 farey_index = floor((m - l + right_neighbor_of_successor.denominator -
-                                     right_neighbor_of_successor.numerator) / (successor.denominator - successor.numerator))
+                                     right_neighbor_of_successor.numerator) / (
+                    successor.denominator - successor.numerator))
                 return Fraction(farey_index * successor.numerator - right_neighbor_of_successor.numerator,
                                 farey_index * successor.denominator - right_neighbor_of_successor.denominator)
         else:
@@ -823,7 +884,8 @@ def predecessor_of_pair_of_neighbors_in_Gml(m: int, l: int, successor: Fraction,
             return Fraction(1, -10)
 
 
-def successor_of_pair_of_neighbors_in_Gml(m: int, l: int, left_neighbor_of_predecessor: Fraction, predecessor: Fraction, check_pair: bool) -> Fraction:
+def successor_of_pair_of_neighbors_in_Gml(m: int, l: int, left_neighbor_of_predecessor: Fraction, predecessor: Fraction,
+                                          check_pair: bool) -> Fraction:
     # If check_pair == True, then to check whether the input pair is indeed a pair of neighboring fractions in the sequence Gml
     # See Proposition 1.27 (ii) (b) and Table 1.6 of the monograph. Call for instance:
     #    >>> successor_of_pair_of_neighbors_in_Gml(6, 4, Fraction(1, 3),  Fraction(1, 2), True)
@@ -864,7 +926,8 @@ def successor_of_pair_of_neighbors_in_Gml(m: int, l: int, left_neighbor_of_prede
         if (not check_pair) or (check_pair and (predecessor == successor_in_Gml(m, l, left_neighbor_of_predecessor))):
             if predecessor.denominator * l - predecessor.numerator * m >= 1:
                 farey_index = floor(
-                    (m - l + left_neighbor_of_predecessor.denominator - left_neighbor_of_predecessor.numerator) / (predecessor.denominator - predecessor.numerator))
+                    (m - l + left_neighbor_of_predecessor.denominator - left_neighbor_of_predecessor.numerator) / (
+                        predecessor.denominator - predecessor.numerator))
                 return Fraction(farey_index * predecessor.numerator - left_neighbor_of_predecessor.numerator,
                                 farey_index * predecessor.denominator - left_neighbor_of_predecessor.denominator)
             else:
@@ -877,8 +940,9 @@ def successor_of_pair_of_neighbors_in_Gml(m: int, l: int, left_neighbor_of_prede
             return Fraction(1, -10)
 
 
-def predecessor_of_pair_of_neighbors_in_FBnm(n: int, m: int, successor: Fraction, right_neighbor_of_successor: Fraction, check_pair: bool) -> Fraction:
-    # If ckeck_pair == True, then to check whether the input pair is indeed a pair of neighboring fractions in the sequence FBnm
+def predecessor_of_pair_of_neighbors_in_FBnm(n: int, m: int, successor: Fraction, right_neighbor_of_successor: Fraction,
+                                             check_pair: bool) -> Fraction:
+    # If check_pair == True, then to check whether the input pair is indeed a pair of neighboring fractions in the sequence FBnm
     # See Proposition 1.28 (ii) (a) and Table 1.6 of the monograph. Call for instance:
     #    >>> predecessor_of_pair_of_neighbors_in_FBnm(6, 4, Fraction(4, 5),  Fraction(1, 1), True)
     # to get the result:
@@ -911,7 +975,8 @@ def predecessor_of_pair_of_neighbors_in_FBnm(n: int, m: int, successor: Fraction
     elif right_neighbor_of_successor.denominator > n:
         # "N/A: Denominator of the right_neighbor_of_successor should not exceed n"
         return Fraction(1, -8)
-    elif (m + right_neighbor_of_successor.denominator - n > right_neighbor_of_successor.numerator) or (right_neighbor_of_successor.numerator > m):
+    elif (m + right_neighbor_of_successor.denominator - n > right_neighbor_of_successor.numerator) or (
+            right_neighbor_of_successor.numerator > m):
         # "N/A: Numerator of the right_neighbor_of_successor should be between (m + denominator - n) (included) and m (included)"
         return Fraction(1, -9)
     else:
@@ -923,7 +988,8 @@ def predecessor_of_pair_of_neighbors_in_FBnm(n: int, m: int, successor: Fraction
                                 farey_index * successor.denominator - right_neighbor_of_successor.denominator)
             else:
                 farey_index = floor((n - m + right_neighbor_of_successor.denominator -
-                                     right_neighbor_of_successor.numerator) / (successor.denominator - successor.numerator))
+                                     right_neighbor_of_successor.numerator) / (
+                    successor.denominator - successor.numerator))
                 return Fraction(farey_index * successor.numerator - right_neighbor_of_successor.numerator,
                                 farey_index * successor.denominator - right_neighbor_of_successor.denominator)
         else:
@@ -931,11 +997,13 @@ def predecessor_of_pair_of_neighbors_in_FBnm(n: int, m: int, successor: Fraction
             return Fraction(1, -10)
 
 
-def __predecessor_of_pair_of_neighbors_in_FB2mm(m: int, successor: Fraction, right_neighbor_of_successor: Fraction, check_pair: bool) -> Fraction:
+def __predecessor_of_pair_of_neighbors_in_FB2mm(m: int, successor: Fraction, right_neighbor_of_successor: Fraction,
+                                                check_pair: bool) -> Fraction:
     return predecessor_of_pair_of_neighbors_in_FBnm((2 * m), m, successor, right_neighbor_of_successor, check_pair)
 
 
-def successor_of_pair_of_neighbors_in_FBnm(n: int, m: int, left_neighbor_of_predecessor: Fraction, predecessor: Fraction, check_pair: bool) -> Fraction:
+def successor_of_pair_of_neighbors_in_FBnm(n: int, m: int, left_neighbor_of_predecessor: Fraction,
+                                           predecessor: Fraction, check_pair: bool) -> Fraction:
     # If check_pair == True, then to check whether the input pair is indeed a pair of neighboring fractions in the sequence FBnm
     # See Proposition 1.28 (ii) (b) and Table 1.6 of the monograph. Call for instance:
     #    >>> successor_of_pair_of_neighbors_in_FBnm(6, 4, Fraction(1, 3),  Fraction(1, 2), True)
@@ -969,14 +1037,16 @@ def successor_of_pair_of_neighbors_in_FBnm(n: int, m: int, left_neighbor_of_pred
     elif left_neighbor_of_predecessor.denominator > n:
         # "N/A: Denominator of the left_neighbor_of_predecessor should not exceed n"
         return Fraction(1, -8)
-    elif (m + left_neighbor_of_predecessor.denominator - n > left_neighbor_of_predecessor.numerator) or (left_neighbor_of_predecessor.numerator > m):
+    elif (m + left_neighbor_of_predecessor.denominator - n > left_neighbor_of_predecessor.numerator) or (
+            left_neighbor_of_predecessor.numerator > m):
         # "N/A: Numerator of the left_neighbor_of_predecessor should be between (m + denominator - n) (included) and m (included)"
         return Fraction(1, -9)
     else:
         if (not check_pair) or (check_pair and (predecessor == successor_in_FBnm(n, m, left_neighbor_of_predecessor))):
             if predecessor.denominator * m - predecessor.numerator * n >= 1:
                 farey_index = floor(
-                    (n - m + left_neighbor_of_predecessor.denominator - left_neighbor_of_predecessor.numerator) / (predecessor.denominator - predecessor.numerator))
+                    (n - m + left_neighbor_of_predecessor.denominator - left_neighbor_of_predecessor.numerator) / (
+                        predecessor.denominator - predecessor.numerator))
                 return Fraction(farey_index * predecessor.numerator - left_neighbor_of_predecessor.numerator,
                                 farey_index * predecessor.denominator - left_neighbor_of_predecessor.denominator)
             else:
@@ -989,5 +1059,6 @@ def successor_of_pair_of_neighbors_in_FBnm(n: int, m: int, left_neighbor_of_pred
             return Fraction(1, -10)
 
 
-def __successor_of_pair_of_neighbors_in_FB2mm(m: int, left_neighbor_of_predecessor: Fraction, predecessor: Fraction,  check_pair: bool) -> Fraction:
+def __successor_of_pair_of_neighbors_in_FB2mm(m: int, left_neighbor_of_predecessor: Fraction, predecessor: Fraction,
+                                              check_pair: bool) -> Fraction:
     return successor_of_pair_of_neighbors_in_FBnm((2 * m), m, left_neighbor_of_predecessor, predecessor, check_pair)
